@@ -64,6 +64,26 @@ const firstTenOddFibonacciNumbers = () =>
 console.log(...firstTenOddFibonacciNumbers())
 ```
 
+#### Occurrences of each letter in a string
+
+```js
+import { It, it } from 'it'
+
+const zeros = () =>
+  It.range(0x61, 0x7b) // a-z
+    .map(code => String.fromCharCode(code))
+    .map(letter => [letter, 0])
+    .cast(entries => new Map(entries))
+
+const countLetters = input =>
+  it(input)
+    .filter(char => /[a-z]/i.test(char))
+    .map(letter => letter.toLowerCase())
+    .reduce((map, letter) => map.set(letter, map.get(letter) + 1), zeros())
+
+console.log(countLetters('Pack my box with five dozen liquor jugs!'))
+```
+
 #### A sequence in which each element is a hash of the previous element
 
 ```js
@@ -94,19 +114,47 @@ const bytes = numbers.map(n => Math.floor(n*0x100))
 const pincode = size =>
   digits
     .take(size)
-    .reduce((str, d) => str + d, '')
+    .reduce((pin, digit) => pin + digit, '')
 
 const password = size =>
   bytes
-    .filter(b => (
-      0x2f < b && b < 0x3a || // 0-9
-      0x40 < b && b < 0x5b || // A-Z
-      0x60 < b && b < 0x7b    // a-z
+    .filter(byte => (
+      0x30 <= byte && byte <= 0x39 || // 0-9
+      0x41 <= byte && byte <= 0x5a || // A-Z
+      0x61 <= byte && byte <= 0x7a    // a-z
     ))
     .take(size)
-    .cast(it => String.fromCharCode(...it))
+    .cast(codes => String.fromCharCode(...codes))
 
 console.log(pincode(4), password(10))
+```
+
+#### Caesar cipher
+
+```js
+import { it } from 'it'
+
+const cipherer = key => code => {
+  if (0x41 <= code && code <= 0x5a) // A-Z
+    return 0x41 + (code + key - 0x41)%26
+
+  if (0x61 <= code && code <= 0x7a) // a-z
+    return 0x61 + (code + key - 0x61)%26
+
+  return code
+}
+
+const cipher = (input, key) =>
+  it(input)
+    .map(char => char.charCodeAt(0))
+    .map(cipherer(26 + key%26)) // ensure key is ≥ 0
+    .cast(codes => String.fromCharCode(...codes))
+
+const message = 'wow such secret'
+const ciphered = cipher(message, 5)
+const deciphered = cipher(ciphered, -5)
+
+console.log(`${message} -> ${ciphered} -> ${deciphered}`)
 ```
 
 ### More
