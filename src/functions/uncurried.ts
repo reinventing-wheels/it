@@ -79,6 +79,16 @@ export function* match(input: string, regexp: RegExp) {
     yield match
 }
 
+/** Zips multiple iterables to a single one. */
+export function* zip<T>(...its: Iterable<T>[]) {
+  const itsʹ = its.map(unwrap)
+  yield* next(() => {
+    const results = itsʹ.map(it => it.next())
+    const result = results.find(r => r.done) || { value: results.map(r => r.value) }
+    return result as IteratorResult<T[]>
+  })
+}
+
 /** Takes some amount values from an iterable. */
 export function* take<T>(it: Iterable<T>, amount: number) {
   let i = 0

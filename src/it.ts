@@ -1,4 +1,4 @@
-import { forEach, reduce, filter, map, concat, repeat, take, drop } from './functions/uncurried'
+import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './functions/uncurried'
 import { always, loop, generate, sequence, range, match } from './functions/uncurried'
 import * as uncurried from './functions/uncurried'
 import * as curried from './functions/curried'
@@ -78,6 +78,11 @@ export class It<T> implements Iterable<T> {
   /** Repeatedly yields values from the iterable. */
   repeat() {
     return new It(repeat(this))
+  }
+
+  /** Zips multiple iterables to a single one. */
+  zip<U>(...its: Iterable<U>[]) {
+    return new It(zip<T | U>(this, ...its))
   }
 
   /** Takes some amount values from the iterable. */

@@ -1,4 +1,4 @@
-import { forEach, reduce, filter, map, concat, repeat, take, drop } from './curried'
+import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './curried'
 import { always, loop, generate, sequence, range, match } from './curried'
 
 export function* countTo(n: number) { for (let i = 1; i <= n;) yield i++ }
@@ -102,6 +102,14 @@ describe('functions', () => {
       const expected = [['foo', 'f'], ['bar', 'b'], ['baz', 'b']]
       const received = [...match(/(\S)\S*/g)('foo bar baz')].map(m => [...m])
       expect(received).toMatchObject(expected)
+    })
+  })
+
+  describe('zip', () => {
+    it('should zip multiple iterables to a single one', () => {
+      const expected = [['f', 'b'], ['o', 'a'], ['o', 'r']]
+      const received = [...zip('foo', 'bar')]
+      expect(received).toEqual(expected)
     })
   })
 

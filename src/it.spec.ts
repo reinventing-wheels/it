@@ -1,5 +1,5 @@
 import { countTo, leet, add, double, isOdd } from './functions/curried.spec'
-import { forEach, reduce, filter, map, concat, repeat, take, drop } from './functions/curried'
+import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './functions/curried'
 import { always, loop, generate, sequence, range, match } from './functions/curried'
 import { It, it as wrap } from './it'
 
@@ -83,6 +83,12 @@ describe('it', () => {
     it('should have #repeat', () => {
       const expected = [...take(10)(repeat('foo'))]
       const received = [...wrap('foo').repeat().take(10)]
+      expect(received).toEqual(expected)
+    })
+
+    it('should have #zip', () => {
+      const expected = [...zip('foo', 'bar', 'baz')]
+      const received = [...wrap('foo').zip('bar', 'baz')]
       expect(received).toEqual(expected)
     })
 

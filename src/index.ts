@@ -1,4 +1,4 @@
-import { forEach, reduce, filter, map, concat, take, drop } from './functions/uncurried'
+import { forEach, reduce, filter, map, concat, zip, take, drop } from './functions/uncurried'
 import { repeat, always, loop, generate, sequence, range, match } from './functions/uncurried'
 import * as uncurried from './functions/uncurried'
 import * as curried from './functions/curried'
@@ -17,7 +17,8 @@ export {
   range    as rangeʹ,
   match    as matchʹ,
   take     as takeʹ,
-  drop     as dropʹ
+  drop     as dropʹ,
+  zip      as zipʹ
 }
 
 export { uncurried, curried }
