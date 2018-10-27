@@ -134,15 +134,13 @@ console.log(pincode(4), password(10))
 ```js
 import { it } from 'it'
 
-const cipherer = key => code => {
-  if (0x41 <= code && code <= 0x5a) // A-Z
-    return 0x41 + (code + key - 0x41)%26
+const isUpperCase = code => 0x41 <= code && code <= 0x5a
+const isLowerCase = code => 0x61 <= code && code <= 0x7a
 
-  if (0x61 <= code && code <= 0x7a) // a-z
-    return 0x61 + (code + key - 0x61)%26
-
-  return code
-}
+const cipherer = key => code =>
+  isUpperCase(code) ? 0x41 + (code + key - 0x41)%26 :
+  isLowerCase(code) ? 0x61 + (code + key - 0x61)%26 :
+  code
 
 const cipher = (input, key) =>
   it(input)
@@ -150,7 +148,7 @@ const cipher = (input, key) =>
     .map(cipherer(26 + key%26)) // ensure key is ≥ 0
     .cast(codes => String.fromCharCode(...codes))
 
-const message = 'wow such secret'
+const message = 'send nudes'
 const ciphered = cipher(message, 5)
 const deciphered = cipher(ciphered, -5)
 
