@@ -37,14 +37,14 @@ export function* concat<T>(...its: Iterable<T>[]) {
     yield* it
 }
 
-/** Repeatedly yields values from the same iterable. */
-export function* repeat<T>(it: Iterable<T>) {
+/** Yields values from an iterable in cycle. */
+export function* cycle<T>(it: Iterable<T>) {
   for (;;)
     yield* it
 }
 
-/** Always yields the same value. */
-export function* always<T>(value: T) {
+/** Repeatedly yields the same value. */
+export function* repeat<T>(value: T) {
   for (;;)
     yield value
 }

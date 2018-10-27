@@ -1,5 +1,5 @@
-import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './functions/uncurried'
-import { always, loop, generate, sequence, range, match } from './functions/uncurried'
+import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './functions/uncurried'
+import { repeat, loop, generate, sequence, range, match } from './functions/uncurried'
 import * as uncurried from './functions/uncurried'
 import * as curried from './functions/curried'
 
@@ -11,9 +11,9 @@ export class It<T> implements Iterable<T> {
   static uncurried = uncurried
   static curried = curried
 
-  /** Always yields the same value. */
-  static always<T>(value: T) {
-    return new It(always(value))
+  /** Repeatedly yields the same value. */
+  static repeat<T>(value: T) {
+    return new It(repeat(value))
   }
 
   /** Loops a generator function. */
@@ -75,9 +75,9 @@ export class It<T> implements Iterable<T> {
     return new It(concat<T | U>(this, ...its))
   }
 
-  /** Repeatedly yields values from the iterable. */
-  repeat() {
-    return new It(repeat(this))
+  /** Yields values from the iterable in cycle. */
+  cycle() {
+    return new It(cycle(this))
   }
 
   /** Zips multiple iterables to a single one. */

@@ -1,5 +1,5 @@
-import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './curried'
-import { always, loop, generate, sequence, range, match } from './curried'
+import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './curried'
+import { repeat, loop, generate, sequence, range, match } from './curried'
 
 export function* countTo(n: number) { for (let i = 1; i <= n;) yield i++ }
 export function* leet() { yield* [1, 3, 3, 7] }
@@ -49,18 +49,18 @@ describe('functions', () => {
     })
   })
 
-  describe('repeat', () => {
-    it('should repeatedly yield values from the same iterable', () => {
+  describe('cycle', () => {
+    it('should yield values from an iterable in cycle', () => {
       const expected = [...'foofoofoof']
-      const received = [...take(10)(repeat('foo'))]
+      const received = [...take(10)(cycle('foo'))]
       expect(received).toEqual(expected)
     })
   })
 
-  describe('always', () => {
-    it('should always yield the same value', () => {
+  describe('repeat', () => {
+    it('should repeatedly yield the same value', () => {
       const expected = [42, 42, 42, 42, 42]
-      const received = [...take(5)(always(42))]
+      const received = [...take(5)(repeat(42))]
       expect(received).toEqual(expected)
     })
   })

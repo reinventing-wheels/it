@@ -1,13 +1,13 @@
 import { countTo, leet, add, double, isOdd } from './functions/curried.spec'
-import { forEach, reduce, filter, map, concat, repeat, zip, take, drop } from './functions/curried'
-import { always, loop, generate, sequence, range, match } from './functions/curried'
+import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './functions/curried'
+import { repeat, loop, generate, sequence, range, match } from './functions/curried'
 import { It, it as wrap } from './it'
 
 describe('it', () => {
   describe('static methods', () => {
-    it('should have #always', () => {
-      const expected = [...take(10)(always(42))]
-      const received = [...It.always(42).take(10)]
+    it('should have #repeat', () => {
+      const expected = [...take(10)(repeat(42))]
+      const received = [...It.repeat(42).take(10)]
       expect(received).toEqual(expected)
     })
 
@@ -80,9 +80,9 @@ describe('it', () => {
       expect(received).toEqual(expected)
     })
 
-    it('should have #repeat', () => {
-      const expected = [...take(10)(repeat('foo'))]
-      const received = [...wrap('foo').repeat().take(10)]
+    it('should have #cycle', () => {
+      const expected = [...take(10)(cycle('foo'))]
+      const received = [...wrap('foo').cycle().take(10)]
       expect(received).toEqual(expected)
     })
 
