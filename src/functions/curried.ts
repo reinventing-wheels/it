@@ -28,11 +28,11 @@ export const range = (start?: number) => (stop?: number) => (step?: number) =>
 export const match = (regexp: RegExp) => (input: string) =>
   uc.match(input, regexp)
 
-/** Takes some amount values from an iterable. */
+/** Takes some amount of values from an iterable. */
 export const take = (amount: number) => <T>(it: Iterable<T>) =>
   uc.take(it, amount)
 
-/** Drops some amount values from an iterable. */
+/** Drops some amount of values from an iterable. */
 export const drop = (amount: number) => <T>(it: Iterable<T>) =>
   uc.drop(it, amount)
 
