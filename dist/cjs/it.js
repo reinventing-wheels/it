@@ -9,9 +9,9 @@ class It {
     constructor(it) {
         this[Symbol.iterator] = it[Symbol.iterator].bind(it);
     }
-    /** Always yields the same value. */
-    static always(value) {
-        return new It(uncurried_2.always(value));
+    /** Repeatedly yields the same value. */
+    static repeat(value) {
+        return new It(uncurried_2.repeat(value));
     }
     /** Loops a generator function. */
     static loop(fn) {
@@ -57,15 +57,19 @@ class It {
     concat(...its) {
         return new It(uncurried_1.concat(this, ...its));
     }
-    /** Repeatedly yields values from the iterable. */
-    repeat() {
-        return new It(uncurried_1.repeat(this));
+    /** Yields values from the iterable in cycle. */
+    cycle() {
+        return new It(uncurried_1.cycle(this));
     }
-    /** Takes some amount values from the iterable. */
+    /** Zips multiple iterables to a single one. */
+    zip(...its) {
+        return new It(uncurried_1.zip(this, ...its));
+    }
+    /** Takes some amount of values from the iterable. */
     take(amount) {
         return new It(uncurried_1.take(this, amount));
     }
-    /** Drops some amount values from the iterable. */
+    /** Drops some amount of values from the iterable. */
     drop(amount) {
         return new It(uncurried_1.drop(this, amount));
     }

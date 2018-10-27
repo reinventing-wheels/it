@@ -31,13 +31,13 @@ export function* concat(...its) {
     for (const it of its)
         yield* it;
 }
-/** Repeatedly yields values from the same iterable. */
-export function* repeat(it) {
+/** Yields values from an iterable in cycle. */
+export function* cycle(it) {
     for (;;)
         yield* it;
 }
-/** Always yields the same value. */
-export function* always(value) {
+/** Repeatedly yields the same value. */
+export function* repeat(value) {
     for (;;)
         yield value;
 }
@@ -66,14 +66,23 @@ export function* match(input, regexp) {
     for (let match; match = regexp.exec(input);)
         yield match;
 }
-/** Takes some amount values from an iterable. */
+/** Zips multiple iterables to a single one. */
+export function* zip(...its) {
+    const itsʹ = its.map(unwrap);
+    yield* next(() => {
+        const results = itsʹ.map(it => it.next());
+        const result = results.find(r => r.done) || { value: results.map(r => r.value) };
+        return result;
+    });
+}
+/** Takes some amount of values from an iterable. */
 export function* take(it, amount) {
     let i = 0;
     const itʹ = unwrap(it);
     const done = { done: true };
     yield* next(() => i++ < amount ? itʹ.next() : done);
 }
-/** Drops some amount values from an iterable. */
+/** Drops some amount of values from an iterable. */
 export function* drop(it, amount) {
     const itʹ = wrap(unwrap(it)); // always return the same iterator
     for (const _ of take(itʹ, amount))

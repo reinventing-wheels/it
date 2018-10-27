@@ -15,13 +15,14 @@ exports.sequence = (fn) => (first) => uc.sequence(fn, first);
 exports.range = (start) => (stop) => (step) => uc.range(start, stop, step);
 /** Yields a sequence of matches. */
 exports.match = (regexp) => (input) => uc.match(input, regexp);
-/** Takes some amount values from an iterable. */
+/** Takes some amount of values from an iterable. */
 exports.take = (amount) => (it) => uc.take(it, amount);
-/** Drops some amount values from an iterable. */
+/** Drops some amount of values from an iterable. */
 exports.drop = (amount) => (it) => uc.drop(it, amount);
 var uncurried_1 = require("./uncurried");
 exports.concat = uncurried_1.concat;
+exports.cycle = uncurried_1.cycle;
 exports.repeat = uncurried_1.repeat;
-exports.always = uncurried_1.always;
 exports.loop = uncurried_1.loop;
 exports.generate = uncurried_1.generate;
+exports.zip = uncurried_1.zip;

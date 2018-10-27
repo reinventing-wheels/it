@@ -38,18 +38,18 @@ function* concat(...its) {
         yield* it;
 }
 exports.concat = concat;
-/** Repeatedly yields values from the same iterable. */
-function* repeat(it) {
+/** Yields values from an iterable in cycle. */
+function* cycle(it) {
     for (;;)
         yield* it;
 }
-exports.repeat = repeat;
-/** Always yields the same value. */
-function* always(value) {
+exports.cycle = cycle;
+/** Repeatedly yields the same value. */
+function* repeat(value) {
     for (;;)
         yield value;
 }
-exports.always = always;
+exports.repeat = repeat;
 /** Loops a generator function. */
 function* loop(fn) {
     for (let i = 0;;)
@@ -80,7 +80,17 @@ function* match(input, regexp) {
         yield match;
 }
 exports.match = match;
-/** Takes some amount values from an iterable. */
+/** Zips multiple iterables to a single one. */
+function* zip(...its) {
+    const itsʹ = its.map(util_1.unwrap);
+    yield* util_1.next(() => {
+        const results = itsʹ.map(it => it.next());
+        const result = results.find(r => r.done) || { value: results.map(r => r.value) };
+        return result;
+    });
+}
+exports.zip = zip;
+/** Takes some amount of values from an iterable. */
 function* take(it, amount) {
     let i = 0;
     const itʹ = util_1.unwrap(it);
@@ -88,7 +98,7 @@ function* take(it, amount) {
     yield* util_1.next(() => i++ < amount ? itʹ.next() : done);
 }
 exports.take = take;
-/** Drops some amount values from an iterable. */
+/** Drops some amount of values from an iterable. */
 function* drop(it, amount) {
     const itʹ = util_1.wrap(util_1.unwrap(it)); // always return the same iterator
     for (const _ of take(itʹ, amount))

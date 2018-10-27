@@ -12,8 +12,8 @@ export declare const sequence: <T>(fn: (previous: T, index: number) => T) => (fi
 export declare const range: (start?: number | undefined) => (stop?: number | undefined) => (step?: number | undefined) => IterableIterator<number>;
 /** Yields a sequence of matches. */
 export declare const match: (regexp: RegExp) => (input: string) => IterableIterator<RegExpExecArray>;
-/** Takes some amount values from an iterable. */
+/** Takes some amount of values from an iterable. */
 export declare const take: (amount: number) => <T>(it: Iterable<T>) => IterableIterator<T>;
-/** Drops some amount values from an iterable. */
+/** Drops some amount of values from an iterable. */
 export declare const drop: (amount: number) => <T>(it: Iterable<T>) => IterableIterator<T>;
-export { concat, repeat, always, loop, generate } from './uncurried';
+export { concat, cycle, repeat, loop, generate, zip } from './uncurried';

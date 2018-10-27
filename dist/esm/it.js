@@ -1,5 +1,5 @@
-import { forEach, reduce, filter, map, concat, repeat, take, drop } from './functions/uncurried';
-import { always, loop, generate, sequence, range, match } from './functions/uncurried';
+import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './functions/uncurried';
+import { repeat, loop, generate, sequence, range, match } from './functions/uncurried';
 import * as uncurried from './functions/uncurried';
 import * as curried from './functions/curried';
 export const it = (it) => new It(it);
@@ -7,9 +7,9 @@ export class It {
     constructor(it) {
         this[Symbol.iterator] = it[Symbol.iterator].bind(it);
     }
-    /** Always yields the same value. */
-    static always(value) {
-        return new It(always(value));
+    /** Repeatedly yields the same value. */
+    static repeat(value) {
+        return new It(repeat(value));
     }
     /** Loops a generator function. */
     static loop(fn) {
@@ -55,15 +55,19 @@ export class It {
     concat(...its) {
         return new It(concat(this, ...its));
     }
-    /** Repeatedly yields values from the iterable. */
-    repeat() {
-        return new It(repeat(this));
+    /** Yields values from the iterable in cycle. */
+    cycle() {
+        return new It(cycle(this));
     }
-    /** Takes some amount values from the iterable. */
+    /** Zips multiple iterables to a single one. */
+    zip(...its) {
+        return new It(zip(this, ...its));
+    }
+    /** Takes some amount of values from the iterable. */
     take(amount) {
         return new It(take(this, amount));
     }
-    /** Drops some amount values from the iterable. */
+    /** Drops some amount of values from the iterable. */
     drop(amount) {
         return new It(drop(this, amount));
     }

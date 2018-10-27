@@ -40,13 +40,13 @@
       for (const it of its)
           yield* it;
   }
-  /** Repeatedly yields values from the same iterable. */
-  function* repeat(it) {
+  /** Yields values from an iterable in cycle. */
+  function* cycle(it) {
       for (;;)
           yield* it;
   }
-  /** Always yields the same value. */
-  function* always(value) {
+  /** Repeatedly yields the same value. */
+  function* repeat(value) {
       for (;;)
           yield value;
   }
@@ -75,14 +75,23 @@
       for (let match; match = regexp.exec(input);)
           yield match;
   }
-  /** Takes some amount values from an iterable. */
+  /** Zips multiple iterables to a single one. */
+  function* zip(...its) {
+      const itsʹ = its.map(unwrap);
+      yield* next(() => {
+          const results = itsʹ.map(it => it.next());
+          const result = results.find(r => r.done) || { value: results.map(r => r.value) };
+          return result;
+      });
+  }
+  /** Takes some amount of values from an iterable. */
   function* take(it, amount) {
       let i = 0;
       const itʹ = unwrap(it);
       const done = { done: true };
       yield* next(() => i++ < amount ? itʹ.next() : done);
   }
-  /** Drops some amount values from an iterable. */
+  /** Drops some amount of values from an iterable. */
   function* drop(it, amount) {
       const itʹ = wrap(unwrap(it)); // always return the same iterator
       for (const _ of take(itʹ, amount))
@@ -96,13 +105,14 @@
     filter: filter,
     map: map,
     concat: concat,
+    cycle: cycle,
     repeat: repeat,
-    always: always,
     loop: loop,
     generate: generate,
     sequence: sequence,
     range: range,
     match: match,
+    zip: zip,
     take: take,
     drop: drop
   });
@@ -121,9 +131,9 @@
   const range$1 = (start) => (stop) => (step) => range(start, stop, step);
   /** Yields a sequence of matches. */
   const match$1 = (regexp) => (input) => match(input, regexp);
-  /** Takes some amount values from an iterable. */
+  /** Takes some amount of values from an iterable. */
   const take$1 = (amount) => (it) => take(it, amount);
-  /** Drops some amount values from an iterable. */
+  /** Drops some amount of values from an iterable. */
   const drop$1 = (amount) => (it) => drop(it, amount);
 
   var curried = ({
@@ -137,10 +147,11 @@
     take: take$1,
     drop: drop$1,
     concat: concat,
+    cycle: cycle,
     repeat: repeat,
-    always: always,
     loop: loop,
-    generate: generate
+    generate: generate,
+    zip: zip
   });
 
   const it = (it) => new It(it);
@@ -148,9 +159,9 @@
       constructor(it) {
           this[Symbol.iterator] = it[Symbol.iterator].bind(it);
       }
-      /** Always yields the same value. */
-      static always(value) {
-          return new It(always(value));
+      /** Repeatedly yields the same value. */
+      static repeat(value) {
+          return new It(repeat(value));
       }
       /** Loops a generator function. */
       static loop(fn) {
@@ -196,15 +207,19 @@
       concat(...its) {
           return new It(concat(this, ...its));
       }
-      /** Repeatedly yields values from the iterable. */
-      repeat() {
-          return new It(repeat(this));
+      /** Yields values from the iterable in cycle. */
+      cycle() {
+          return new It(cycle(this));
       }
-      /** Takes some amount values from the iterable. */
+      /** Zips multiple iterables to a single one. */
+      zip(...its) {
+          return new It(zip(this, ...its));
+      }
+      /** Takes some amount of values from the iterable. */
       take(amount) {
           return new It(take(this, amount));
       }
-      /** Drops some amount values from the iterable. */
+      /** Drops some amount of values from the iterable. */
       drop(amount) {
           return new It(drop(this, amount));
       }
@@ -217,8 +232,8 @@
   exports.filterʹ = filter;
   exports.mapʹ = map;
   exports.concatʹ = concat;
+  exports.cycleʹ = cycle;
   exports.repeatʹ = repeat;
-  exports.alwaysʹ = always;
   exports.loopʹ = loop;
   exports.generateʹ = generate;
   exports.sequenceʹ = sequence;
@@ -226,6 +241,7 @@
   exports.matchʹ = match;
   exports.takeʹ = take;
   exports.dropʹ = drop;
+  exports.zipʹ = zip;
   exports.uncurried = uncurried;
   exports.curried = curried;
   exports.forEach = forEach$1;
@@ -238,10 +254,11 @@
   exports.take = take$1;
   exports.drop = drop$1;
   exports.concat = concat;
+  exports.cycle = cycle;
   exports.repeat = repeat;
-  exports.always = always;
   exports.loop = loop;
   exports.generate = generate;
+  exports.zip = zip;
   exports.it = it;
   exports.It = It;
 
