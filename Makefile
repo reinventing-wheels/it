@@ -12,8 +12,8 @@ clean:
 	rm -rf dist
 
 build: node_modules
-	tsc -d -m esnext --outDir dist/esm
-	tsc -d -m commonjs --outDir dist/cjs
+	tsc -m esnext --outDir dist/esm
+	tsc -m commonjs --outDir dist/cjs
 	rollup -c
 
 release: all

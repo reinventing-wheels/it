@@ -20,7 +20,9 @@ const base = {
       tsconfigOverride: {
         compilerOptions: {
           module: 'esnext',
-          sourceMap: true
+          sourceMap: true,
+          declaration: false,
+          declarationMap: false
         }
       }
     })
