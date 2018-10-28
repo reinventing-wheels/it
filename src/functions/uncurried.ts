@@ -1,15 +1,16 @@
 // tslint:disable:only-arrow-functions
+import { Callback, Reducer } from '../types'
 import { unwrap, wrap, next } from '../util'
 
 /** Calls a function for each value of an iterable. */
-export function forEach<T>(it: Iterable<T>, fn: (value: T, index: number) => void) {
+export function forEach<T>(it: Iterable<T>, fn: Callback<T, void>) {
   let i = 0
   for (const value of it)
     fn(value, i++)
 }
 
 /** Reduces an iterable to a single value. */
-export function reduce<T, U>(it: Iterable<T>, fn: (previous: U, current: T, index: number) => U, first: U) {
+export function reduce<T, U>(it: Iterable<T>, fn: Reducer<T, U>, first: U) {
   let i = 0, acc = first
   for (const value of it)
     acc = fn(acc, value, i++)
@@ -17,7 +18,7 @@ export function reduce<T, U>(it: Iterable<T>, fn: (previous: U, current: T, inde
 }
 
 /** Filters values of an iterable. */
-export function* filter<T>(it: Iterable<T>, fn: (value: T, index: number) => boolean) {
+export function* filter<T>(it: Iterable<T>, fn: Callback<T, boolean>) {
   let i = 0
   for (const value of it)
     if (fn(value, i++))
@@ -25,7 +26,7 @@ export function* filter<T>(it: Iterable<T>, fn: (value: T, index: number) => boo
 }
 
 /** Maps values of an iterable. */
-export function* map<T, U>(it: Iterable<T>, fn: (value: T, index: number) => U) {
+export function* map<T, U>(it: Iterable<T>, fn: Callback<T, U>) {
   let i = 0
   for (const value of it)
     yield fn(value, i++)
@@ -62,7 +63,7 @@ export function* generate<T>(fn: (index: number) => T) {
 }
 
 /** Yields a sequence of values derived from previous values. */
-export function* sequence<T>(fn: (previous: T, index: number) => T, first: T) {
+export function* sequence<T>(fn: Callback<T, T>, first: T) {
   for (let i = 0, value = first;; value = fn(value, i++))
     yield value
 }

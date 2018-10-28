@@ -1,3 +1,4 @@
+import { Callback, Reducer } from './types'
 import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './functions/uncurried'
 import { repeat, loop, generate, sequence, range, match } from './functions/uncurried'
 import * as uncurried from './functions/uncurried'
@@ -27,7 +28,7 @@ export class It<T> implements Iterable<T> {
   }
 
   /** Yields a sequence of values derived from previous values. */
-  static sequence<T>(fn: (previous: T, index: number) => T, first: T) {
+  static sequence<T>(fn: Callback<T, T>, first: T) {
     return new It(sequence(fn, first))
   }
 
@@ -51,22 +52,22 @@ export class It<T> implements Iterable<T> {
   }
 
   /** Calls a function for each value of the iterable. */
-  forEach(fn: (value: T, index: number) => void) {
+  forEach(fn: Callback<T, void>) {
     forEach(this, fn)
   }
 
   /** Reduces the iterable to a single value. */
-  reduce<U>(fn: (previous: U, current: T, index: number) => U, first: U) {
+  reduce<U>(fn: Reducer<T, U>, first: U) {
     return reduce(this, fn, first)
   }
 
   /** Filters values of the iterable. */
-  filter(fn: (value: T, index: number) => boolean) {
+  filter(fn: Callback<T, boolean>) {
     return new It(filter(this, fn))
   }
 
   /** Maps values of the iterable. */
-  map<U>(fn: (value: T, index: number) => U) {
+  map<U>(fn: Callback<T, U>) {
     return new It(map(this, fn))
   }
 

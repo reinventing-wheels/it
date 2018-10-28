@@ -1,23 +1,24 @@
+import { Callback, Reducer } from '../types'
 import * as uc from './uncurried'
 
 /** Calls a function for each value of an iterable. */
-export const forEach = <T>(fn: (value: T, index: number) => void) => (it: Iterable<T>) =>
+export const forEach = <T>(fn: Callback<T, void>) => (it: Iterable<T>) =>
   uc.forEach(it, fn)
 
 /** Reduces an iterable to a single value. */
-export const reduce = <T, U>(fn: (previous: U, current: T, index: number) => U) => (first: U) => (it: Iterable<T>) =>
+export const reduce = <T, U>(fn: Reducer<T, U>) => (first: U) => (it: Iterable<T>) =>
   uc.reduce(it, fn, first)
 
 /** Filters values of an iterable. */
-export const filter = <T>(fn: (value: T, index: number) => boolean) => (it: Iterable<T>) =>
+export const filter = <T>(fn: Callback<T, boolean>) => (it: Iterable<T>) =>
   uc.filter(it, fn)
 
 /** Maps values of an iterable. */
-export const map = <T, U>(fn: (value: T, index: number) => U) => (it: Iterable<T>) =>
+export const map = <T, U>(fn: Callback<T, U>) => (it: Iterable<T>) =>
   uc.map(it, fn)
 
 /** Yields a sequence of values derived from previous values. */
-export const sequence = <T>(fn: (previous: T, index: number) => T) => (first: T) =>
+export const sequence = <T>(fn: Callback<T, T>) => (first: T) =>
   uc.sequence(fn, first)
 
 /** Yields a sequence of monotonically increasing numbers. */
