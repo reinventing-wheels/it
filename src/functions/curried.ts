@@ -29,6 +29,10 @@ export const range = (start?: number) => (stop?: number) => (step?: number) =>
 export const match = (regexp: RegExp) => (input: string) =>
   uc.match(input, regexp)
 
+/** Yields an iterable by chunks of specified size. */
+export const chunk = (size: number) => <T>(it: Iterable<T>) =>
+  uc.chunk(it, size)
+
 /** Takes some amount of values from an iterable. */
 export const take = (amount: number) => <T>(it: Iterable<T>) =>
   uc.take(it, amount)

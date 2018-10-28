@@ -79,6 +79,11 @@ export class It<T> implements Iterable<T> {
     return new It(uc.cycle(this))
   }
 
+  /** Yields the iterable by chunks of specified size. */
+  chunk(size: number) {
+    return new It(uc.chunk(this, size))
+  }
+
   /** Zips multiple iterables to a single one. */
   zip<U>(...its: Iterable<U>[]) {
     return new It(uc.zip<T | U>(this, ...its))

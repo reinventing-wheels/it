@@ -85,6 +85,12 @@ describe('it', () => {
       expect(received).toEqual(expected)
     })
 
+    it('should have #chunk', () => {
+      const expected = [...c.chunk(2)(countTo(5))]
+      const received = [...wrap(countTo(5)).chunk(2)]
+      expect(received).toEqual(expected)
+    })
+
     it('should have #zip', () => {
       const expected = [...c.zip('foo', 'bar', 'baz')]
       const received = [...wrap('foo').zip('bar', 'baz')]

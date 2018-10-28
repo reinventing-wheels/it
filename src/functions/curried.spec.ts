@@ -104,6 +104,14 @@ describe('functions', () => {
     })
   })
 
+  describe('chunk', () => {
+    it('should yield an iterable by chunks of specified size', () => {
+      const expected = [[1, 2], [3, 4], [5]]
+      const received = [...c.chunk(2)(countTo(5))]
+      expect(received).toEqual(expected)
+    })
+  })
+
   describe('zip', () => {
     it('should zip multiple iterables to a single one', () => {
       const expected = [['f', 'b'], ['o', 'a'], ['o', 'r']]

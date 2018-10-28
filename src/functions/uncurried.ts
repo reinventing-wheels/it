@@ -80,6 +80,12 @@ export function* match(input: string, regexp: RegExp) {
     yield match
 }
 
+/** Yields an iterable by chunks of specified size. */
+export function* chunk<T>(it: Iterable<T>, size: number) {
+  for (let chunk; (chunk = [...take(it, size)]).length;)
+    yield chunk
+}
+
 /** Zips multiple iterables to a single one. */
 export function* zip<T>(...its: Iterable<T>[]) {
   const itsʹ = its.map(unwrap)
