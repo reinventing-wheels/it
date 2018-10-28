@@ -4,5 +4,5 @@ export const unwrap = <T>(it: Iterable<T>): Iterator<T> =>
 export const wrap = <T>(it: Iterator<T>): Iterable<T> =>
   ({ [Symbol.iterator]: () => it })
 
-export const next = <T>(next: () => IteratorResult<T>) =>
+export const iter = <T>(next: () => IteratorResult<T>) =>
   wrap({ next })
