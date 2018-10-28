@@ -1,42 +1,41 @@
 import { countTo, leet, add, double, isOdd } from './functions/curried.spec'
-import { forEach, reduce, filter, map, concat, cycle, zip, take, drop } from './functions/curried'
-import { repeat, loop, generate, sequence, range, match } from './functions/curried'
 import { It, it as wrap } from './it'
+import * as c from './functions/curried'
 
 describe('it', () => {
   describe('static methods', () => {
     it('should have #repeat', () => {
-      const expected = [...take(10)(repeat(42))]
+      const expected = [...c.take(10)(c.repeat(42))]
       const received = [...It.repeat(42).take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #loop', () => {
-      const expected = [...take(10)(loop(leet))]
+      const expected = [...c.take(10)(c.loop(leet))]
       const received = [...It.loop(leet).take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #generate', () => {
-      const expected = [...take(10)(generate(double))]
+      const expected = [...c.take(10)(c.generate(double))]
       const received = [...It.generate(double).take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #sequence', () => {
-      const expected = [...take(10)(sequence(double)(1))]
+      const expected = [...c.take(10)(c.sequence(double)(1))]
       const received = [...It.sequence(double, 1).take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #range', () => {
-      const expected = [...take(10)(range()()())]
+      const expected = [...c.take(10)(c.range()()())]
       const received = [...It.range().take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #match', () => {
-      const expected = [...match(/./g)('foo')]
+      const expected = [...c.match(/./g)('foo')]
       const received = [...It.match('foo', /./g)]
       expect(received).toEqual(expected)
     })
@@ -51,55 +50,55 @@ describe('it', () => {
 
     it('should have #forEach', () => {
       const [f, g] = [jest.fn(), jest.fn()]
-      forEach(f)('foobar')
+      c.forEach(f)('foobar')
       wrap('foobar').forEach(g)
       expect(f.mock.calls).toEqual(g.mock.calls)
     })
 
     it('should have #reduce', () => {
-      const expected = reduce(add)(0)(countTo(10))
+      const expected = c.reduce(add)(0)(countTo(10))
       const received = wrap(countTo(10)).reduce(add, 0)
       expect(received).toEqual(expected)
     })
 
     it('should have #filter', () => {
-      const expected = [...filter(isOdd)(countTo(10))]
+      const expected = [...c.filter(isOdd)(countTo(10))]
       const received = [...wrap(countTo(10)).filter(isOdd)]
       expect(received).toEqual(expected)
     })
 
     it('should have #map', () => {
-      const expected = [...map(double)(countTo(10))]
+      const expected = [...c.map(double)(countTo(10))]
       const received = [...wrap(countTo(10)).map(double)]
       expect(received).toEqual(expected)
     })
 
     it('should have #concat', () => {
-      const expected = [...concat('foo', 'bar', 'baz')]
+      const expected = [...c.concat('foo', 'bar', 'baz')]
       const received = [...wrap('foo').concat('bar', 'baz')]
       expect(received).toEqual(expected)
     })
 
     it('should have #cycle', () => {
-      const expected = [...take(10)(cycle('foo'))]
+      const expected = [...c.take(10)(c.cycle('foo'))]
       const received = [...wrap('foo').cycle().take(10)]
       expect(received).toEqual(expected)
     })
 
     it('should have #zip', () => {
-      const expected = [...zip('foo', 'bar', 'baz')]
+      const expected = [...c.zip('foo', 'bar', 'baz')]
       const received = [...wrap('foo').zip('bar', 'baz')]
       expect(received).toEqual(expected)
     })
 
     it('should have #take', () => {
-      const expected = [...take(3)('foobar')]
+      const expected = [...c.take(3)('foobar')]
       const received = [...wrap('foobar').take(3)]
       expect(received).toEqual(expected)
     })
 
     it('should have #drop', () => {
-      const expected = [...drop(3)('foobar')]
+      const expected = [...c.drop(3)('foobar')]
       const received = [...wrap('foobar').drop(3)]
       expect(received).toEqual(expected)
     })
