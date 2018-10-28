@@ -96,7 +96,7 @@ export function* zip<T>(...its: Iterable<T>[]) {
   })
 }
 
-/** Takes some amount of values from an iterable. */
+/** Takes specified amount of values from an iterable. */
 export function* take<T>(it: Iterable<T>, amount: number) {
   let i = 0
   const itʹ = unwrap(it)
@@ -104,7 +104,7 @@ export function* take<T>(it: Iterable<T>, amount: number) {
   yield* next(() => i++ < amount ? itʹ.next() : done)
 }
 
-/** Drops some amount of values from an iterable. */
+/** Drops specified amount of values from an iterable. */
 export function* drop<T>(it: Iterable<T>, amount: number) {
   const itʹ = wrap(unwrap(it)) // always return the same iterator
   for (const _ of take(itʹ, amount)); // noop

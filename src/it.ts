@@ -89,12 +89,12 @@ export class It<T> implements Iterable<T> {
     return new It(uc.zip<T | U>(this, ...its))
   }
 
-  /** Takes some amount of values from the iterable. */
+  /** Takes specified amount of values from the iterable. */
   take(amount: number) {
     return new It(uc.take(this, amount))
   }
 
-  /** Drops some amount of values from the iterable. */
+  /** Drops specified amount of values from the iterable. */
   drop(amount: number) {
     return new It(uc.drop(this, amount))
   }

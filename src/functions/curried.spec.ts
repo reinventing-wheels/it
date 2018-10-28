@@ -121,7 +121,7 @@ describe('functions', () => {
   })
 
   describe('take', () => {
-    it('should take some amount of values from an iterable', () => {
+    it('should take specified amount of values from an iterable', () => {
       const expected = [1, 2, 3]
       const received = [...c.take(3)(countTo(5))]
       expect(received).toEqual(expected)
@@ -129,7 +129,7 @@ describe('functions', () => {
   })
 
   describe('drop', () => {
-    it('should drop some amount of values from an iterable', () => {
+    it('should drop specified amount of values from an iterable', () => {
       const expected = [3, 4, 5]
       const received = [...c.drop(2)(countTo(5))]
       expect(received).toEqual(expected)

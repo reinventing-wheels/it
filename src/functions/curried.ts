@@ -33,11 +33,11 @@ export const match = (regexp: RegExp) => (input: string) =>
 export const chunk = (size: number) => <T>(it: Iterable<T>) =>
   uc.chunk(it, size)
 
-/** Takes some amount of values from an iterable. */
+/** Takes specified amount of values from an iterable. */
 export const take = (amount: number) => <T>(it: Iterable<T>) =>
   uc.take(it, amount)
 
-/** Drops some amount of values from an iterable. */
+/** Drops specified amount of values from an iterable. */
 export const drop = (amount: number) => <T>(it: Iterable<T>) =>
   uc.drop(it, amount)
 
