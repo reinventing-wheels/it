@@ -12,6 +12,10 @@ export class It<T> implements Iterable<T> {
   static uncurried = uncurried
   static curried = curried
 
+  constructor(it: Iterable<T>) {
+    this[Symbol.iterator] = it[Symbol.iterator].bind(it)
+  }
+
   /** Repeatedly yields the same value. */
   static repeat<T>(value: T) {
     return new It(repeat(value))
@@ -40,10 +44,6 @@ export class It<T> implements Iterable<T> {
   /** Yields a sequence of matches. */
   static match(input: string, regexp: RegExp) {
     return new It(match(input, regexp))
-  }
-
-  constructor(it: Iterable<T>) {
-    this[Symbol.iterator] = it[Symbol.iterator].bind(it)
   }
 
   /** Casts the iterable to other data structure. */
