@@ -1,6 +1,6 @@
 // tslint:disable:only-arrow-functions
 import { Callback, Reducer } from '../types'
-import { unwrap, wrap, iter } from '../util'
+import { unwrap, wrap, iter, done, value } from '../util'
 
 /** Calls a function for each value of an iterable. */
 export function forEach<T>(it: Iterable<T>, fn: Callback<T, void>) {
@@ -90,9 +90,9 @@ export function* chunk<T>(it: Iterable<T>, size: number) {
 export function* zip<T>(...its: Iterable<T>[]) {
   const itsʹ = its.map(unwrap)
   yield* iter(() => {
-    const results = itsʹ.map(it => it.next())
-    const result = results.find(r => r.done) || { value: results.map(r => r.value) }
-    return result as IteratorResult<T[]>
+    const rs = itsʹ.map(it => it.next())
+    const r = rs.find(r => r.done) || value(rs.map(r => r.value))
+    return r as IteratorResult<T[]>
   })
 }
 
@@ -100,8 +100,7 @@ export function* zip<T>(...its: Iterable<T>[]) {
 export function* take<T>(it: Iterable<T>, amount: number) {
   let i = 0
   const itʹ = unwrap(it)
-  const done = { done: true } as IteratorResult<T>
-  yield* iter(() => i++ < amount ? itʹ.next() : done)
+  yield* iter(() => i++ < amount ? itʹ.next() : done<T>())
 }
 
 /** Drops specified amount of values from an iterable. */
