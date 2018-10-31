@@ -136,16 +136,14 @@ console.log(randomPassword(10))
 import { it } from 'it'
 
 function* xorshift(seed) {
-  for (let x = seed; x ^= x<<13, x ^= x>>>17, x ^= x<<5;) {
-    yield 0xff & x >>> 24
-    yield 0xff & x >>> 16
-    yield 0xff & x >>>  8
-    yield 0xff & x
-  }
+  for (let x = seed;;)
+    yield (x ^= x<<13, x ^= x>>>17, x ^= x<<5)
 }
 
 const randomBytes = seed =>
   it(xorshift(seed))
+    .map(u32 => [0xff&u32>>24, 0xff&u32>>16, 0xff&u32>>8, 0xff&u32])
+    .flatten()
 
 const randomFloats = seed =>
   randomBytes(seed)
