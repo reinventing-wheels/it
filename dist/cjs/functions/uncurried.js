@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// tslint:disable:only-arrow-functions
 const util_1 = require("../util");
 /** Calls a function for each value of an iterable. */
 function forEach(it, fn) {
@@ -38,6 +37,12 @@ function* concat(...its) {
         yield* it;
 }
 exports.concat = concat;
+/** Flattens an iterable. */
+function* flatten(it) {
+    for (const value of it)
+        yield* value;
+}
+exports.flatten = flatten;
 /** Yields values from an iterable in cycle. */
 function* cycle(it) {
     for (;;)
@@ -80,25 +85,30 @@ function* match(input, regexp) {
         yield match;
 }
 exports.match = match;
+/** Yields an iterable by chunks of specified size. */
+function* chunk(it, size) {
+    for (let chunk; (chunk = [...take(it, size)]).length;)
+        yield chunk;
+}
+exports.chunk = chunk;
 /** Zips multiple iterables to a single one. */
 function* zip(...its) {
     const itsʹ = its.map(util_1.unwrap);
-    yield* util_1.next(() => {
-        const results = itsʹ.map(it => it.next());
-        const result = results.find(r => r.done) || { value: results.map(r => r.value) };
-        return result;
+    yield* util_1.iter(() => {
+        const rs = itsʹ.map(it => it.next());
+        const r = rs.find(r => r.done) || util_1.value(rs.map(r => r.value));
+        return r;
     });
 }
 exports.zip = zip;
-/** Takes some amount of values from an iterable. */
+/** Takes specified amount of values from an iterable. */
 function* take(it, amount) {
     let i = 0;
     const itʹ = util_1.unwrap(it);
-    const done = { done: true };
-    yield* util_1.next(() => i++ < amount ? itʹ.next() : done);
+    yield* util_1.iter(() => i++ < amount ? itʹ.next() : util_1.done());
 }
 exports.take = take;
-/** Drops some amount of values from an iterable. */
+/** Drops specified amount of values from an iterable. */
 function* drop(it, amount) {
     const itʹ = util_1.wrap(util_1.unwrap(it)); // always return the same iterator
     for (const _ of take(itʹ, amount))

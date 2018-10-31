@@ -4,41 +4,52 @@
   (factory((global.it = {})));
 }(this, (function (exports) { 'use strict';
 
+  /** Extracts an iterator from an iterable. */
   const unwrap = (it) => it[Symbol.iterator]();
+  /** Creates an iterable from an iterator. */
   const wrap = (it) => ({ [Symbol.iterator]: () => it });
-  const next = (next) => wrap({ next });
+  /** Creates an iterable from a function. */
+  const iter = (next) => wrap({ next });
+  /** Creates an iterator result with `done` set to true. */
+  const done = () => ({ done: true });
+  /** Creates an iterator result with specified `value`. */
+  const value = (value) => ({ value });
 
-  // tslint:disable:only-arrow-functions
   /** Calls a function for each value of an iterable. */
   function forEach(it, fn) {
       let i = 0;
-      for (const value of it)
-          fn(value, i++);
+      for (const value$$1 of it)
+          fn(value$$1, i++);
   }
   /** Reduces an iterable to a single value. */
   function reduce(it, fn, first) {
       let i = 0, acc = first;
-      for (const value of it)
-          acc = fn(acc, value, i++);
+      for (const value$$1 of it)
+          acc = fn(acc, value$$1, i++);
       return acc;
   }
   /** Filters values of an iterable. */
   function* filter(it, fn) {
       let i = 0;
-      for (const value of it)
-          if (fn(value, i++))
-              yield value;
+      for (const value$$1 of it)
+          if (fn(value$$1, i++))
+              yield value$$1;
   }
   /** Maps values of an iterable. */
   function* map(it, fn) {
       let i = 0;
-      for (const value of it)
-          yield fn(value, i++);
+      for (const value$$1 of it)
+          yield fn(value$$1, i++);
   }
   /** Concatenates multiple iterables to a single one. */
   function* concat(...its) {
       for (const it of its)
           yield* it;
+  }
+  /** Flattens an iterable. */
+  function* flatten(it) {
+      for (const value$$1 of it)
+          yield* value$$1;
   }
   /** Yields values from an iterable in cycle. */
   function* cycle(it) {
@@ -46,9 +57,9 @@
           yield* it;
   }
   /** Repeatedly yields the same value. */
-  function* repeat(value) {
+  function* repeat(value$$1) {
       for (;;)
-          yield value;
+          yield value$$1;
   }
   /** Loops a generator function. */
   function* loop(fn) {
@@ -62,8 +73,8 @@
   }
   /** Yields a sequence of values derived from previous values. */
   function* sequence(fn, first) {
-      for (let i = 0, value = first;; value = fn(value, i++))
-          yield value;
+      for (let i = 0, value$$1 = first;; value$$1 = fn(value$$1, i++))
+          yield value$$1;
   }
   /** Yields a sequence of monotonically increasing numbers. */
   function* range(start = 0, stop = Infinity, step = 1) {
@@ -75,23 +86,27 @@
       for (let match; match = regexp.exec(input);)
           yield match;
   }
+  /** Yields an iterable by chunks of specified size. */
+  function* chunk(it, size) {
+      for (let chunk; (chunk = [...take(it, size)]).length;)
+          yield chunk;
+  }
   /** Zips multiple iterables to a single one. */
   function* zip(...its) {
       const itsʹ = its.map(unwrap);
-      yield* next(() => {
-          const results = itsʹ.map(it => it.next());
-          const result = results.find(r => r.done) || { value: results.map(r => r.value) };
-          return result;
+      yield* iter(() => {
+          const rs = itsʹ.map(it => it.next());
+          const r = rs.find(r => r.done) || value(rs.map(r => r.value));
+          return r;
       });
   }
-  /** Takes some amount of values from an iterable. */
+  /** Takes specified amount of values from an iterable. */
   function* take(it, amount) {
       let i = 0;
       const itʹ = unwrap(it);
-      const done = { done: true };
-      yield* next(() => i++ < amount ? itʹ.next() : done);
+      yield* iter(() => i++ < amount ? itʹ.next() : done());
   }
-  /** Drops some amount of values from an iterable. */
+  /** Drops specified amount of values from an iterable. */
   function* drop(it, amount) {
       const itʹ = wrap(unwrap(it)); // always return the same iterator
       for (const _ of take(itʹ, amount))
@@ -99,12 +114,13 @@
       yield* itʹ;
   }
 
-  var uncurried = ({
+  var uc = ({
     forEach: forEach,
     reduce: reduce,
     filter: filter,
     map: map,
     concat: concat,
+    flatten: flatten,
     cycle: cycle,
     repeat: repeat,
     loop: loop,
@@ -112,6 +128,7 @@
     sequence: sequence,
     range: range,
     match: match,
+    chunk: chunk,
     zip: zip,
     take: take,
     drop: drop
@@ -131,12 +148,14 @@
   const range$1 = (start) => (stop) => (step) => range(start, stop, step);
   /** Yields a sequence of matches. */
   const match$1 = (regexp) => (input) => match(input, regexp);
-  /** Takes some amount of values from an iterable. */
+  /** Yields an iterable by chunks of specified size. */
+  const chunk$1 = (size) => (it) => chunk(it, size);
+  /** Takes specified amount of values from an iterable. */
   const take$1 = (amount) => (it) => take(it, amount);
-  /** Drops some amount of values from an iterable. */
+  /** Drops specified amount of values from an iterable. */
   const drop$1 = (amount) => (it) => drop(it, amount);
 
-  var curried = ({
+  var c = ({
     forEach: forEach$1,
     reduce: reduce$1,
     filter: filter$1,
@@ -144,9 +163,11 @@
     sequence: sequence$1,
     range: range$1,
     match: match$1,
+    chunk: chunk$1,
     take: take$1,
     drop: drop$1,
     concat: concat,
+    flatten: flatten,
     cycle: cycle,
     repeat: repeat,
     loop: loop,
@@ -207,43 +228,53 @@
       concat(...its) {
           return new It(concat(this, ...its));
       }
+      /** Flattens the iterable. */
+      flatten() {
+          return new It(flatten(this));
+      }
       /** Yields values from the iterable in cycle. */
       cycle() {
           return new It(cycle(this));
+      }
+      /** Yields the iterable by chunks of specified size. */
+      chunk(size) {
+          return new It(chunk(this, size));
       }
       /** Zips multiple iterables to a single one. */
       zip(...its) {
           return new It(zip(this, ...its));
       }
-      /** Takes some amount of values from the iterable. */
+      /** Takes specified amount of values from the iterable. */
       take(amount) {
           return new It(take(this, amount));
       }
-      /** Drops some amount of values from the iterable. */
+      /** Drops specified amount of values from the iterable. */
       drop(amount) {
           return new It(drop(this, amount));
       }
   }
-  It.uncurried = uncurried;
-  It.curried = curried;
+  It.uncurried = uc;
+  It.curried = c;
 
-  exports.forEachʹ = forEach;
-  exports.reduceʹ = reduce;
-  exports.filterʹ = filter;
-  exports.mapʹ = map;
+  exports.uncurried = uc;
+  exports.curried = c;
+  exports.chunkʹ = chunk;
   exports.concatʹ = concat;
   exports.cycleʹ = cycle;
-  exports.repeatʹ = repeat;
-  exports.loopʹ = loop;
-  exports.generateʹ = generate;
-  exports.sequenceʹ = sequence;
-  exports.rangeʹ = range;
-  exports.matchʹ = match;
-  exports.takeʹ = take;
   exports.dropʹ = drop;
+  exports.filterʹ = filter;
+  exports.flattenʹ = flatten;
+  exports.forEachʹ = forEach;
+  exports.generateʹ = generate;
+  exports.loopʹ = loop;
+  exports.mapʹ = map;
+  exports.matchʹ = match;
+  exports.rangeʹ = range;
+  exports.reduceʹ = reduce;
+  exports.repeatʹ = repeat;
+  exports.sequenceʹ = sequence;
+  exports.takeʹ = take;
   exports.zipʹ = zip;
-  exports.uncurried = uncurried;
-  exports.curried = curried;
   exports.forEach = forEach$1;
   exports.reduce = reduce$1;
   exports.filter = filter$1;
@@ -251,9 +282,11 @@
   exports.sequence = sequence$1;
   exports.range = range$1;
   exports.match = match$1;
+  exports.chunk = chunk$1;
   exports.take = take$1;
   exports.drop = drop$1;
   exports.concat = concat;
+  exports.flatten = flatten;
   exports.cycle = cycle;
   exports.repeat = repeat;
   exports.loop = loop;

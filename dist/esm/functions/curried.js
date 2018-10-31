@@ -13,8 +13,10 @@ export const sequence = (fn) => (first) => uc.sequence(fn, first);
 export const range = (start) => (stop) => (step) => uc.range(start, stop, step);
 /** Yields a sequence of matches. */
 export const match = (regexp) => (input) => uc.match(input, regexp);
-/** Takes some amount of values from an iterable. */
+/** Yields an iterable by chunks of specified size. */
+export const chunk = (size) => (it) => uc.chunk(it, size);
+/** Takes specified amount of values from an iterable. */
 export const take = (amount) => (it) => uc.take(it, amount);
-/** Drops some amount of values from an iterable. */
+/** Drops specified amount of values from an iterable. */
 export const drop = (amount) => (it) => uc.drop(it, amount);
-export { concat, cycle, repeat, loop, generate, zip } from './uncurried';
+export { concat, flatten, cycle, repeat, loop, generate, zip } from './uncurried';

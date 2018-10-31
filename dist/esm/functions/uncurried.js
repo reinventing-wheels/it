@@ -1,5 +1,4 @@
-// tslint:disable:only-arrow-functions
-import { unwrap, wrap, next } from '../util';
+import { unwrap, wrap, iter, done, value } from '../util';
 /** Calls a function for each value of an iterable. */
 export function forEach(it, fn) {
     let i = 0;
@@ -30,6 +29,11 @@ export function* map(it, fn) {
 export function* concat(...its) {
     for (const it of its)
         yield* it;
+}
+/** Flattens an iterable. */
+export function* flatten(it) {
+    for (const value of it)
+        yield* value;
 }
 /** Yields values from an iterable in cycle. */
 export function* cycle(it) {
@@ -66,23 +70,27 @@ export function* match(input, regexp) {
     for (let match; match = regexp.exec(input);)
         yield match;
 }
+/** Yields an iterable by chunks of specified size. */
+export function* chunk(it, size) {
+    for (let chunk; (chunk = [...take(it, size)]).length;)
+        yield chunk;
+}
 /** Zips multiple iterables to a single one. */
 export function* zip(...its) {
     const itsʹ = its.map(unwrap);
-    yield* next(() => {
-        const results = itsʹ.map(it => it.next());
-        const result = results.find(r => r.done) || { value: results.map(r => r.value) };
-        return result;
+    yield* iter(() => {
+        const rs = itsʹ.map(it => it.next());
+        const r = rs.find(r => r.done) || value(rs.map(r => r.value));
+        return r;
     });
 }
-/** Takes some amount of values from an iterable. */
+/** Takes specified amount of values from an iterable. */
 export function* take(it, amount) {
     let i = 0;
     const itʹ = unwrap(it);
-    const done = { done: true };
-    yield* next(() => i++ < amount ? itʹ.next() : done);
+    yield* iter(() => i++ < amount ? itʹ.next() : done());
 }
-/** Drops some amount of values from an iterable. */
+/** Drops specified amount of values from an iterable. */
 export function* drop(it, amount) {
     const itʹ = wrap(unwrap(it)); // always return the same iterator
     for (const _ of take(itʹ, amount))
