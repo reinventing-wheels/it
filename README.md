@@ -129,7 +129,49 @@ const password = size =>
 console.log(pincode(4), password(10))
 ```
 
-#### Caesar cipher
+#### Random bytes/[floats/doubles][4] using [xorshift][5]
+
+```js
+import { it } from 'it'
+
+function* xorshift(seed) {
+  for (let x = seed; x ^= x<<13, x ^= x>>>17, x ^= x<<5;) {
+    yield 0xff & x >>> 24
+    yield 0xff & x >>> 16
+    yield 0xff & x >>>  8
+    yield 0xff & x
+  }
+}
+
+const randomBytes = seed =>
+  it(xorshift(seed))
+
+const randomFloats = seed =>
+  randomBytes(seed)
+    .chunk(4)
+    .map(bytes => Buffer.from(bytes))
+    .map(buffer => {
+      const u32 = buffer.readUInt32BE(0)
+      buffer.writeUInt32BE(0x3f800000 | u32>>>9, 0)
+      return buffer.readFloatBE(0) - 1.0
+    })
+
+const randomDoubles = seed =>
+  randomBytes(seed)
+    .chunk(8)
+    .map(bytes => Buffer.from(bytes))
+    .map(buffer => {
+      const u32 = buffer.readUInt32BE(0)
+      buffer.writeUInt32BE(0x3ff00000 | u32>>>12, 0)
+      return buffer.readDoubleBE(0) - 1.0
+    })
+
+console.log(...randomBytes(0xdeadf00d).take(16))
+console.log(...randomFloats(0xbadc0de).take(4))
+console.log(...randomDoubles(0xc0ffee).take(4))
+```
+
+#### [Caesar cipher][6]
 
 ```js
 import { it } from 'it'
@@ -164,3 +206,6 @@ console.log(`${message} -> ${ciphered} -> ${deciphered}`)
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 [2]: https://code.visualstudio.com/
 [3]: https://www.typescriptlang.org/
+[4]: http://experilous.com/1/blog/post/perfect-fast-random-floating-point-numbers#half-open-range
+[5]: https://en.wikipedia.org/wiki/Xorshift
+[6]: https://en.wikipedia.org/wiki/Caesar_cipher
