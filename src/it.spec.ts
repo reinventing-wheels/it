@@ -79,6 +79,12 @@ describe('it', () => {
       expect(received).toEqual(expected)
     })
 
+    it('should have #flatten', () => {
+      const expected = [...c.flatten([[1, [2], 3], [4, [5], 6]])]
+      const received = [...wrap([[1, [2], 3], [4, [5], 6]]).flatten()]
+      expect(received).toEqual(expected)
+    })
+
     it('should have #cycle', () => {
       const expected = [...c.take(10)(c.cycle('foo'))]
       const received = [...wrap('foo').cycle().take(10)]

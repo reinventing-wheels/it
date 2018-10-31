@@ -38,6 +38,12 @@ export function* concat<T>(...its: Iterable<T>[]) {
     yield* it
 }
 
+/** Flattens an iterable. */
+export function* flatten<T>(it: Iterable<Iterable<T>>) {
+  for (const value of it)
+    yield* value
+}
+
 /** Yields values from an iterable in cycle. */
 export function* cycle<T>(it: Iterable<T>) {
   for (;;)

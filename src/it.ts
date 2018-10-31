@@ -1,4 +1,4 @@
-import { Callback, Reducer } from './types'
+import { Callback, Reducer, Flatten } from './types'
 import * as uc from './functions/uncurried'
 import * as c from './functions/curried'
 
@@ -72,6 +72,11 @@ export class It<T> implements Iterable<T> {
   /** Concatenates multiple iterables to a single one. */
   concat<U>(...its: Iterable<U>[]) {
     return new It(uc.concat<T | U>(this, ...its))
+  }
+
+  /** Flattens the iterable. */
+  flatten() {
+    return new It(uc.flatten<Flatten<T>>(this as any))
   }
 
   /** Yields values from the iterable in cycle. */

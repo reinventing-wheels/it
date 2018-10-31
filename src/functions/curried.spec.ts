@@ -48,6 +48,14 @@ describe('functions', () => {
     })
   })
 
+  describe('flatten', () => {
+    it('should flatten an iterable', () => {
+      const expected = [1, [2], 3, 4, [5], 6]
+      const received = [...c.flatten([[1, [2], 3], [4, [5], 6]])]
+      expect(received).toEqual(expected)
+    })
+  })
+
   describe('cycle', () => {
     it('should yield values from an iterable in cycle', () => {
       const expected = [...'foofoofoof']

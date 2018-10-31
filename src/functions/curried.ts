@@ -41,4 +41,4 @@ export const take = (amount: number) => <T>(it: Iterable<T>) =>
 export const drop = (amount: number) => <T>(it: Iterable<T>) =>
   uc.drop(it, amount)
 
-export { concat, cycle, repeat, loop, generate, zip } from './uncurried'
+export { concat, flatten, cycle, repeat, loop, generate, zip } from './uncurried'
