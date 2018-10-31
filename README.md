@@ -107,17 +107,17 @@ console.log([...hashSequence('foo').take(10)])
 ```js
 import { It } from 'it'
 
-const numbers = It.generate(Math.random)
-const digits = numbers.map(n => Math.floor(n*10))
-const bytes = numbers.map(n => Math.floor(n*0x100))
+const randomNumbers = It.generate(Math.random)
+const randomDigits = randomNumbers.map(n => Math.floor(n*10))
+const randomBytes = randomNumbers.map(n => Math.floor(n*0x100))
 
-const pincode = size =>
-  digits
+const randomPincode = size =>
+  randomDigits
     .take(size)
     .reduce((pin, digit) => pin + digit, '')
 
-const password = size =>
-  bytes
+const randomPassword = size =>
+  randomBytes
     .filter(byte => (
       0x30 <= byte && byte <= 0x39 || // 0-9
       0x41 <= byte && byte <= 0x5a || // A-Z
@@ -126,7 +126,8 @@ const password = size =>
     .take(size)
     .cast(codes => String.fromCharCode(...codes))
 
-console.log(pincode(4), password(10))
+console.log(randomPincode(4))
+console.log(randomPassword(10))
 ```
 
 #### Random bytes/[floats/doubles][4] using [xorshift][5]
