@@ -137,7 +137,7 @@ import { it } from 'it'
 
 function* xorshift(seed) {
   for (let x = seed;;)
-    yield (x ^= x<<13, x ^= x>>>17, x ^= x<<5)
+    yield (x ^= x<<13, x ^= x>>>17, x ^= x<<5, x>>>0)
 }
 
 const randomBytes = seed =>
