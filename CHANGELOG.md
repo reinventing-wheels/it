@@ -1,6 +1,15 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.4.0](https://github.com/reinventing-wheels/it/compare/v0.3.0...v0.4.0) (2019-06-08)
+
+
+### Features
+
+* a huge update! ([9f7cd1b](https://github.com/reinventing-wheels/it/commit/9f7cd1b))
+
+
 
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/reinventing-wheels/it/compare/v0.2.0...v0.3.0) (2018-10-31)
