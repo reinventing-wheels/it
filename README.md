@@ -1,18 +1,11 @@
-## JavaScript iterables become handy!
-
-Due to a lack of [JavaScript iterables][1] built-in functionality this minimalistic library was created.
-It provides a bunch of essentials (`filter`, `map`, `reduce`, etc.) to perform operations on iterables
-and derive iterables from other iterables.
-
-### Features
-
-- Curried and uncurried generator-based single-purpose functions
-- A handy chainable wrapper interface which is an iterable as well
+**Iterable Tools** is a library which provides higher-order functions (such as `filter`, `map`, `reduce`, etc.) for [JavaScript iterables][1] due to a lack of such functionality in the language. There's also a handy wrapper class with all the functions available as chainable methods, so you can work with iterables in similar to arrays fashion.
 
 ## Installation
 
+**Tip:** see [GitHub URLs][7] for more info
+
 ```sh
-yarn add reinventing-wheels/it
+npm install reinventing-wheels/it
 ```
 
 ## Usage
@@ -67,10 +60,10 @@ console.log(...firstTenOddFibonacciNumbers())
 #### Occurrences of each letter in a string
 
 ```js
-import { It, it } from 'it'
+import { it } from 'it'
 
 const zeros = () =>
-  It.range(0x61, 0x7b) // a-z
+  it.range(0x61, 0x7b) // a-z
     .map(code => String.fromCharCode(code))
     .map(letter => [letter, 0])
     .cast(entries => new Map(entries))
@@ -87,7 +80,7 @@ console.log(countLetters('Pack my box with five dozen liquor jugs!'))
 #### A sequence in which each element is a hash of the previous element
 
 ```js
-import { It } from 'it'
+import { it } from 'it'
 import { createHash } from 'crypto'
 
 const hash = input =>
@@ -96,8 +89,8 @@ const hash = input =>
     .digest('hex')
 
 const hashSequence = seed =>
-  It.sequence(hash, seed)
-    .drop(1) // get rid of seed
+  it.sequence(hash, seed)
+    .drop(1) // drop `seed`
 
 console.log([...hashSequence('foo').take(10)])
 ```
@@ -105,9 +98,9 @@ console.log([...hashSequence('foo').take(10)])
 #### Pincodes and passwords from one source of random numbers
 
 ```js
-import { It } from 'it'
+import { it } from 'it'
 
-const randomNumbers = It.generate(Math.random)
+const randomNumbers = it.generate(Math.random)
 const randomDigits = randomNumbers.map(n => Math.floor(n*10))
 const randomBytes = randomNumbers.map(n => Math.floor(n*0x100))
 
@@ -136,14 +129,14 @@ console.log(randomPassword(10))
 import { it } from 'it'
 
 function* xorshift(seed) {
-  for (let x = seed;;)
-    yield (x ^= x<<13, x ^= x>>>17, x ^= x<<5, x>>>0)
+  for (let n = seed;;)
+    yield (n ^= n<<13, n ^= n>>>17, n ^= n<<5, n>>>0)
 }
 
 const randomBytes = seed =>
   it(xorshift(seed))
-    .map(u32 => [0xff&u32>>24, 0xff&u32>>16, 0xff&u32>>8, 0xff&u32])
-    .flatten()
+    .flatMap(n => [n>>24, n>>16, n>>8, n])
+    .map(n => 0xff & n)
 
 const randomFloats = seed =>
   randomBytes(seed)
@@ -175,18 +168,15 @@ console.log(...randomDoubles(0xc0ffee).take(4))
 ```js
 import { it } from 'it'
 
-const isUpperCase = code => 0x41 <= code && code <= 0x5a
-const isLowerCase = code => 0x61 <= code && code <= 0x7a
-
-const cipherer = key => code =>
-  isUpperCase(code) ? 0x41 + (code + key - 0x41)%26 :
-  isLowerCase(code) ? 0x61 + (code + key - 0x61)%26 :
-  code
+const cipherer = key => c =>
+  0x41 <= c && c <= 0x5a ? 0x41 + (c + key - 0x41)%26 : // A-Z
+  0x61 <= c && c <= 0x7a ? 0x61 + (c + key - 0x61)%26 : // a-z
+  c
 
 const cipher = (input, key) =>
   it(input)
     .map(char => char.charCodeAt(0))
-    .map(cipherer(26 + key%26)) // ensure key is ≥ 0
+    .map(cipherer(26 + key%26)) // ensure `key` is ≥ 0
     .cast(codes => String.fromCharCode(...codes))
 
 const message = 'send nudes'
@@ -198,9 +188,10 @@ console.log(`${message} -> ${ciphered} -> ${deciphered}`)
 
 ### More
 
-- [src/functions/curried.spec.ts](src/functions/curried.spec.ts)
-- [src/it.spec.ts](src/it.spec.ts)
 - [src/it.ts](src/it.ts)
+- [src/index.spec.ts](src/index.spec.ts)
+- [src/uncurried](src/uncurried)
+- [src/curried](src/curried)
 
 [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
 [2]: https://code.visualstudio.com/
@@ -208,3 +199,4 @@ console.log(`${message} -> ${ciphered} -> ${deciphered}`)
 [4]: http://experilous.com/1/blog/post/perfect-fast-random-floating-point-numbers#half-open-range
 [5]: https://en.wikipedia.org/wiki/Xorshift
 [6]: https://en.wikipedia.org/wiki/Caesar_cipher
+[7]: https://docs.npmjs.com/files/package.json#github-urls

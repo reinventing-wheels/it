@@ -1,3 +1,6 @@
 {
-  "extends": "tslint-preset"
+  "extends": "tslint-preset",
+  "rules": {
+    "only-arrow-functions": false
+  }
 }

@@ -1,19 +1,27 @@
-/** Extracts an iterator from an iterable. */
-export const unwrap = <T>(it: Iterable<T>): Iterator<T> =>
-  it[Symbol.iterator]()
+import { Methods } from './types'
 
-/** Creates an iterable from an iterator. */
-export const wrap = <T>(it: Iterator<T>): Iterable<T> =>
-  ({ [Symbol.iterator]: () => it })
-
-/** Creates an iterable from a function. */
-export const iter = <T>(next: () => IteratorResult<T>) =>
-  wrap({ next })
-
-/** Creates an iterator result with `done` set to true. */
 export const done = <T>() =>
   ({ done: true }) as IteratorResult<T>
 
-/** Creates an iterator result with specified `value`. */
 export const value = <T>(value: T) =>
   ({ value }) as IteratorResult<T>
+
+export const wrap = <T>(it: Iterator<T>) =>
+  ({ [Symbol.iterator]: () => it }) as Iterable<T>
+
+export const unwrap = <T>(it: Iterable<T>) =>
+  it[Symbol.iterator]()
+
+export const lock = <T>(it: Iterable<T>) => {
+  const itʹ = unwrap(it)
+  return wrap({ next: itʹ.next.bind(itʹ) })
+}
+
+export const staticMethods = <C>(ctor: C) => {
+  const props = Object.getOwnPropertyNames(ctor) as (keyof C)[]
+  const acc = {} as C
+  for (const prop of props)
+    if (typeof ctor[prop] === 'function')
+      acc[prop] = ctor[prop]
+  return acc as Methods<C>
+}

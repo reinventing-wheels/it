@@ -1,15 +1,14 @@
-import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+import typescript from 'rollup-plugin-typescript2'
 import merge from 'deepmerge'
 import pkg from './package.json'
 
-const production = !process.env.ROLLUP_WATCH
-const globals = {}
+const UMD = pkg.browser
+const ESM = pkg.browser.replace(/\bumd\b/, 'esm')
 
 const base = {
   input: 'src/index.ts',
   output: {
-    globals,
     freeze: false,
     interop: false,
     sourcemap: true
@@ -22,26 +21,15 @@ const base = {
           module: 'esnext',
           sourceMap: true,
           declaration: false,
-          declarationMap: false
+          declarationMap: false,
+          removeComments: true
         }
       }
     })
-  ],
-  external: Object.keys(globals)
+  ]
 }
 
-const umd = merge(base, {
-  output: {
-    format: 'umd',
-    file: pkg.browser,
-    name: pkg.name
-  }
-})
-
-const min = merge(umd, {
-  output: {
-    file: pkg.browser.replace(/\w+$/, 'min.$&')
-  },
+const min = {
   plugins: [
     terser({
       ecma: 8,
@@ -59,8 +47,35 @@ const min = merge(umd, {
       }
     })
   ]
+}
+
+const umd = merge(base, {
+  output: {
+    format: 'umd',
+    file: UMD,
+    name: pkg.name
+  }
 })
 
-export default production
-  ? [ umd, min ]
-  : [ umd ]
+const esm = merge(base, {
+  output: {
+    format: 'esm',
+    file: ESM
+  }
+})
+
+const umdMin = merge.all([umd, min, {
+  output: {
+    file: UMD.replace(/js$/, 'min.js')
+  }
+}])
+
+const esmMin = merge.all([esm, min, {
+  output: {
+    file: ESM.replace(/js$/, 'min.js')
+  }
+}])
+
+export default !process.env.ROLLUP_WATCH
+  ? [ esm, umd, esmMin, umdMin ]
+  : [ esm, umd ]
