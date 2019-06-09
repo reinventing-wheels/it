@@ -128,39 +128,29 @@ console.log(randomPassword(10))
 ```js
 import { it } from 'it'
 
-function* xorshift(seed) {
-  for (let n = seed;;)
-    yield (n ^= n<<13, n ^= n>>>17, n ^= n<<5, n>>>0)
-}
+const xorshift = (n = 0xdeadf00d) => () =>
+  (n ^= n<<13, n ^= n>>>17, n ^= n<<5, n>>>0)
 
 const randomBytes = seed =>
-  it(xorshift(seed))
+  it.generate(xorshift(seed))
     .flatMap(n => [n>>24, n>>16, n>>8, n])
     .map(n => 0xff & n)
 
 const randomFloats = seed =>
   randomBytes(seed)
-    .chunk(4)
-    .map(bytes => Buffer.from(bytes))
-    .map(buffer => {
-      const u32 = buffer.readUInt32BE(0)
-      buffer.writeUInt32BE(0x3f800000 | u32>>>9, 0)
-      return buffer.readFloatBE(0) - 1.0
-    })
+    .chunk(3)
+    .map(([u8, ...u16]) => Buffer.of(0x3f, 0x80 | u8, ...u16))
+    .map(buffer => buffer.readFloatBE(0) - 1.0)
 
 const randomDoubles = seed =>
   randomBytes(seed)
-    .chunk(8)
-    .map(bytes => Buffer.from(bytes))
-    .map(buffer => {
-      const u32 = buffer.readUInt32BE(0)
-      buffer.writeUInt32BE(0x3ff00000 | u32>>>12, 0)
-      return buffer.readDoubleBE(0) - 1.0
-    })
+    .chunk(7)
+    .map(([u8, ...u48]) => Buffer.of(0x3f, 0xf0 | u8, ...u48))
+    .map(buffer => buffer.readDoubleBE(0) - 1.0)
 
-console.log(...randomBytes(0xdeadf00d).take(16))
-console.log(...randomFloats(0xbadc0de).take(4))
-console.log(...randomDoubles(0xc0ffee).take(4))
+console.log(...randomBytes().take(16))
+console.log(...randomFloats().take(4))
+console.log(...randomDoubles().take(4))
 ```
 
 #### [Caesar cipher][6]
@@ -184,6 +174,34 @@ const ciphered = cipher(message, 5)
 const deciphered = cipher(ciphered, -5)
 
 console.log(`${message} -> ${ciphered} -> ${deciphered}`)
+```
+
+#### Radix conversion
+
+```js
+import { it } from 'it'
+
+const digits =
+  String
+    .fromCharCode(...it.range(0x20, 0x80))
+    .replace(/[^\p{Nd}\p{LC}]/ug, '')
+
+const toNumber = (str, radix) =>
+  it(radix <= 36 ? str.toUpperCase() : str)
+    .map(digit => digits.indexOf(digit))
+    .reduce((acc, n) => radix*acc + BigInt(n), BigInt(0))
+
+const toString = (num, radix) =>
+  it.sequence(n => n/radix, num)
+    .takeWhile(n => n)
+    .reduce((acc, n) => digits[n%radix] + acc, '')
+
+const convert = (str, fromRadix, toRadix) =>
+  toString(toNumber(str, BigInt(fromRadix)), BigInt(toRadix))
+
+console.log(convert('42', 10, 2))
+console.log(convert('deadf00d', 16, 10))
+console.log(convert('SomeReallyLongNumberInBase62', 62, 10))
 ```
 
 ### More
