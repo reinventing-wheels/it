@@ -15,6 +15,7 @@ const base = {
   output: {
     freeze: false,
     interop: false,
+    preferConst: true,
     sourcemap: true
   },
   plugins: [
@@ -34,6 +35,9 @@ const min = {
     terser({
       ecma: 8,
       compress: {
+        hoist_funs: true,
+        hoist_vars: true,
+        pure_getters: true,
         unsafe: true,
         unsafe_arrows: true,
         unsafe_comps: true,
@@ -42,8 +46,7 @@ const min = {
         unsafe_methods: true,
         unsafe_proto: true,
         unsafe_regexp: true,
-        unsafe_undefined: true,
-        pure_getters: true
+        unsafe_undefined: true
       }
     })
   ]
