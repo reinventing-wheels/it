@@ -2,7 +2,7 @@
 
 ## Installation
 
-**Tip:** see [GitHub URLs][7] for more info
+**Tip:** see [Git URLs as Dependencies][7] for more info
 
 ```sh
 npm install reinventing-wheels/it
@@ -217,4 +217,4 @@ console.log(convert('SomeReallyLongNumberInBase62', 62, 10))
 [4]: http://experilous.com/1/blog/post/perfect-fast-random-floating-point-numbers#half-open-range
 [5]: https://en.wikipedia.org/wiki/Xorshift
 [6]: https://en.wikipedia.org/wiki/Caesar_cipher
-[7]: https://docs.npmjs.com/files/package.json#github-urls
+[7]: https://docs.npmjs.com/files/package.json#git-urls-as-dependencies
