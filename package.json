@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "browser": "dist/umd.js",
+  "browser": "dist/bundle.umd.js",
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^24.0.13",
