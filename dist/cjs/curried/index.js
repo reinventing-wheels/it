@@ -37,3 +37,4 @@ __export(require("./sequence"));
 __export(require("./some"));
 __export(require("./take"));
 __export(require("./takeWhile"));
+//# sourceMappingURL=index.js.map

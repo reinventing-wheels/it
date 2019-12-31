@@ -9,3 +9,4 @@ export function last(it) {
         ; // noop
     return value;
 }
+//# sourceMappingURL=last.js.map

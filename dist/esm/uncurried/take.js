@@ -12,3 +12,4 @@ export function* take(it, amount = 1) {
             return;
     }
 }
+//# sourceMappingURL=take.js.map

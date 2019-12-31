@@ -7,3 +7,4 @@ export function* flatten(it) {
     for (const value of it)
         yield* value;
 }
+//# sourceMappingURL=flatten.js.map

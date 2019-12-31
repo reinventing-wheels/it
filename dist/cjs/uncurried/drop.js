@@ -17,3 +17,4 @@ function* drop(it, amount = 1) {
     }
 }
 exports.drop = drop;
+//# sourceMappingURL=drop.js.map

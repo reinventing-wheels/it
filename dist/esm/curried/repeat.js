@@ -6,3 +6,4 @@ import { repeat as repeatʹ } from '../uncurried/repeat';
  * repeat(3)('foo') // ('foo', 'foo', 'foo')
  */
 export const repeat = (times) => (value) => repeatʹ(value, times);
+//# sourceMappingURL=repeat.js.map

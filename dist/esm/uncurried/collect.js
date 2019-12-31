@@ -6,3 +6,4 @@
 export function collect(it) {
     return [...it];
 }
+//# sourceMappingURL=collect.js.map

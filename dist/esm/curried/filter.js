@@ -6,3 +6,4 @@ import { filter as filterʹ } from '../uncurried/filter';
  * filter(c => c != 'o')('foobar') // ('f', 'b', 'a', 'r')
  */
 export const filter = (fn) => (it) => filterʹ(it, fn);
+//# sourceMappingURL=filter.js.map

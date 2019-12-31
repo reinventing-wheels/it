@@ -8,3 +8,4 @@ const filter_1 = require("../uncurried/filter");
  * filter(c => c != 'o')('foobar') // ('f', 'b', 'a', 'r')
  */
 exports.filter = (fn) => (it) => filter_1.filter(it, fn);
+//# sourceMappingURL=filter.js.map

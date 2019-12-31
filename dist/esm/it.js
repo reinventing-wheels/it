@@ -290,3 +290,4 @@ export class IT {
 IT.uncurried = uc;
 IT.curried = c;
 export const it = Object.assign((it) => new IT(it), staticMethods(IT));
+//# sourceMappingURL=it.js.map

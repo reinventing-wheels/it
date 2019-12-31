@@ -43,3 +43,4 @@ exports.takeʹ = uncurried_1.take;
 exports.takeWhileʹ = uncurried_1.takeWhile;
 exports.uniqueʹ = uncurried_1.unique;
 exports.zipʹ = uncurried_1.zip;
+//# sourceMappingURL=index.js.map

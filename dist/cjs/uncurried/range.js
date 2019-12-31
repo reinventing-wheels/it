@@ -11,3 +11,4 @@ function* range(start = 0, stop = Infinity, step = 1) {
         yield n;
 }
 exports.range = range;
+//# sourceMappingURL=range.js.map

@@ -8,3 +8,4 @@ export function* flatMap(it, fn) {
     for (const value of it)
         yield* fn(value, i++);
 }
+//# sourceMappingURL=flatMap.js.map

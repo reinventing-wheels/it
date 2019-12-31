@@ -7,3 +7,4 @@ export function* chain(...its) {
     for (const it of its)
         yield* it;
 }
+//# sourceMappingURL=chain.js.map

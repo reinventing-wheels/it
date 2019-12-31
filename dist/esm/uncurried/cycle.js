@@ -8,3 +8,4 @@ export function* cycle(it, times = Infinity) {
     for (let i = 0; i < times; i++)
         yield* it;
 }
+//# sourceMappingURL=cycle.js.map

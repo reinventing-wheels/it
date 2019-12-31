@@ -8,7 +8,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * match('foobarbaz', /(f|b)(..)/g)
  */
 function* match(input, regexp) {
+    // eslint-disable-next-line no-cond-assign
     for (let match; match = regexp.exec(input);)
         yield match;
 }
 exports.match = match;
+//# sourceMappingURL=match.js.map

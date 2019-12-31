@@ -9,3 +9,4 @@ const match_1 = require("../uncurried/match");
  * match(/(f|b)(..)/g)('foobarbaz')
  */
 exports.match = (regexp) => (input) => match_1.match(input, regexp);
+//# sourceMappingURL=match.js.map

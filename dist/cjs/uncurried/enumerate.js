@@ -11,3 +11,4 @@ function* enumerate(it) {
         yield [i++, value];
 }
 exports.enumerate = enumerate;
+//# sourceMappingURL=enumerate.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"some.js","sourceRoot":"","sources":["../../../src/uncurried/some.ts"],"names":[],"mappings":";;AAEA;;;;GAIG;AACH,SAAgB,IAAI,CAAI,EAAe,EAAE,EAAwB;IAC/D,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,IAAI,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC;YAChB,OAAO,IAAI,CAAA;IACf,OAAO,KAAK,CAAA;AACd,CAAC;AAND,oBAMC"}

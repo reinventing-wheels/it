@@ -7,3 +7,4 @@ const map_1 = require("../uncurried/map");
  * map(c => c.charCodeAt(0))('foo') // (102, 111, 111)
  */
 exports.map = (fn) => (it) => map_1.map(it, fn);
+//# sourceMappingURL=map.js.map

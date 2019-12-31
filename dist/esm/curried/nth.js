@@ -6,3 +6,4 @@ import { nth as nthʹ } from '../uncurried/nth';
  * nth(3)('foobar') // 'b'
  */
 export const nth = (n) => (it) => nthʹ(it, n);
+//# sourceMappingURL=nth.js.map

@@ -5,3 +5,4 @@ import { chunk as chunkʹ } from '../uncurried/chunk';
  * chunk(3)('foobar') // (['f', 'o', 'o'], ['b', 'a', 'r'])
  */
 export const chunk = (size) => (it) => chunkʹ(it, size);
+//# sourceMappingURL=chunk.js.map

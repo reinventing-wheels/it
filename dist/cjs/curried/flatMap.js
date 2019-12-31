@@ -7,3 +7,4 @@ const flatMap_1 = require("../uncurried/flatMap");
  * flatMap(s => s)(['foo', 'bar']) // ('f', 'o', 'o', 'b', 'a', 'r')
  */
 exports.flatMap = (fn) => (it) => flatMap_1.flatMap(it, fn);
+//# sourceMappingURL=flatMap.js.map

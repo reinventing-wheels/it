@@ -5,3 +5,4 @@ import { inspect as inspectʹ } from '../uncurried/inspect';
  * inspect((c, i) => log(i, c))('foobar') // ('f', 'o', …)
  */
 export const inspect = (fn) => (it) => inspectʹ(it, fn);
+//# sourceMappingURL=inspect.js.map

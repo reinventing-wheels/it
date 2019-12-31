@@ -1,0 +1,1 @@
+{"version":3,"file":"every.js","sourceRoot":"","sources":["../../../src/uncurried/every.ts"],"names":[],"mappings":";;AAEA;;;;GAIG;AACH,SAAgB,KAAK,CAAI,EAAe,EAAE,EAAwB;IAChE,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,IAAI,CAAC,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC;YACjB,OAAO,KAAK,CAAA;IAChB,OAAO,IAAI,CAAA;AACb,CAAC;AAND,sBAMC"}

@@ -7,3 +7,4 @@ import { count as countʹ } from '../uncurried/count';
  * count(-2)(0) // (0, -2, -4, -6, …)
  */
 export const count = (start) => (step) => countʹ(start, step);
+//# sourceMappingURL=count.js.map

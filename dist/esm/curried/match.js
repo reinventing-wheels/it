@@ -7,3 +7,4 @@ import { match as matchʹ } from '../uncurried/match';
  * match(/(f|b)(..)/g)('foobarbaz')
  */
 export const match = (regexp) => (input) => matchʹ(input, regexp);
+//# sourceMappingURL=match.js.map

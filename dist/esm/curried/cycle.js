@@ -6,3 +6,4 @@ import { cycle as cycleʹ } from '../uncurried/cycle';
  * cycle()('foo') // ('f', 'o', 'o', 'f', 'o', …)
  */
 export const cycle = (times) => (it) => cycleʹ(it, times);
+//# sourceMappingURL=cycle.js.map

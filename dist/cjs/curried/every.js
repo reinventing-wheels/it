@@ -7,3 +7,4 @@ const every_1 = require("../uncurried/every");
  * every(n => n > 1)([1, 2, 3]) // false
  */
 exports.every = (fn) => (it) => every_1.every(it, fn);
+//# sourceMappingURL=every.js.map

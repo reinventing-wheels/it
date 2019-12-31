@@ -8,3 +8,4 @@ const generate_1 = require("../uncurried/generate");
  * generate()(i => i) // (0, 1, 2, 3, 4, …)
  */
 exports.generate = (times) => (fn) => generate_1.generate(fn, times);
+//# sourceMappingURL=generate.js.map

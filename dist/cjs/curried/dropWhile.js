@@ -7,3 +7,4 @@ const dropWhile_1 = require("../uncurried/dropWhile");
  * dropWhile(c => c != 'b')('foobar') // ('b', 'a', 'r')
  */
 exports.dropWhile = (fn) => (it) => dropWhile_1.dropWhile(it, fn);
+//# sourceMappingURL=dropWhile.js.map

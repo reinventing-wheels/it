@@ -5,3 +5,4 @@ import { map as mapʹ } from '../uncurried/map';
  * map(c => c.charCodeAt(0))('foo') // (102, 111, 111)
  */
 export const map = (fn) => (it) => mapʹ(it, fn);
+//# sourceMappingURL=map.js.map

@@ -6,5 +6,5 @@
  * loop(3)(countTo3) // (1, 2, 3, 1, 2, 3, 1, 2, 3)
  * loop(4)(countTo) // (1, 1, 2, 1, 2, 3, 1, 2, 3, 4)
  */
-export declare const loop: (times?: number | undefined) => <T>(fn: (index: number) => Iterable<T>) => IterableIterator<T>;
+export declare const loop: (times?: number | undefined) => <T>(fn: (index: number) => Iterable<T>) => Generator<T, void, undefined>;
 //# sourceMappingURL=loop.d.ts.map

@@ -14,3 +14,4 @@ export function* drop(it, amount = 1) {
         }
     }
 }
+//# sourceMappingURL=drop.js.map

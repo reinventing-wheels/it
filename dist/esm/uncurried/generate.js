@@ -8,3 +8,4 @@ export function* generate(fn, times = Infinity) {
     for (let i = 0; i < times; i++)
         yield fn(i);
 }
+//# sourceMappingURL=generate.js.map

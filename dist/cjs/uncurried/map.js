@@ -11,3 +11,4 @@ function* map(it, fn) {
         yield fn(value, i++);
 }
 exports.map = map;
+//# sourceMappingURL=map.js.map

@@ -8,3 +8,4 @@ const repeat_1 = require("../uncurried/repeat");
  * repeat(3)('foo') // ('foo', 'foo', 'foo')
  */
 exports.repeat = (times) => (value) => repeat_1.repeat(value, times);
+//# sourceMappingURL=repeat.js.map

@@ -12,3 +12,4 @@ function last(it) {
     return value;
 }
 exports.last = last;
+//# sourceMappingURL=last.js.map

@@ -14,3 +14,4 @@ function* chunk(it, size) {
         yield chunk;
 }
 exports.chunk = chunk;
+//# sourceMappingURL=chunk.js.map

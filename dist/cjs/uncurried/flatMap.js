@@ -11,3 +11,4 @@ function* flatMap(it, fn) {
         yield* fn(value, i++);
 }
 exports.flatMap = flatMap;
+//# sourceMappingURL=flatMap.js.map

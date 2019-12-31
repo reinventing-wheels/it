@@ -10,3 +10,4 @@ export function* inspect(it, fn) {
         yield value;
     }
 }
+//# sourceMappingURL=inspect.js.map

@@ -10,3 +10,4 @@ export function some(it, fn) {
             return true;
     return false;
 }
+//# sourceMappingURL=some.js.map

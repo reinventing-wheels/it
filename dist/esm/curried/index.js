@@ -23,3 +23,4 @@ export * from './sequence';
 export * from './some';
 export * from './take';
 export * from './takeWhile';
+//# sourceMappingURL=index.js.map

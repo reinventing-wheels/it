@@ -8,3 +8,4 @@ const cycle_1 = require("../uncurried/cycle");
  * cycle()('foo') // ('f', 'o', 'o', 'f', 'o', …)
  */
 exports.cycle = (times) => (it) => cycle_1.cycle(it, times);
+//# sourceMappingURL=cycle.js.map

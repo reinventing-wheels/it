@@ -6,3 +6,4 @@ import { generate as generateʹ } from '../uncurried/generate';
  * generate()(i => i) // (0, 1, 2, 3, 4, …)
  */
 export const generate = (times) => (fn) => generateʹ(fn, times);
+//# sourceMappingURL=generate.js.map

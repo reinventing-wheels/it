@@ -13,3 +13,4 @@ function reduce(it, fn, first) {
     return acc;
 }
 exports.reduce = reduce;
+//# sourceMappingURL=reduce.js.map

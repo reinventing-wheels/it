@@ -7,3 +7,4 @@ const chunk_1 = require("../uncurried/chunk");
  * chunk(3)('foobar') // (['f', 'o', 'o'], ['b', 'a', 'r'])
  */
 exports.chunk = (size) => (it) => chunk_1.chunk(it, size);
+//# sourceMappingURL=chunk.js.map

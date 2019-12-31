@@ -10,3 +10,4 @@ export function nth(it, n) {
         if (i++ >= n)
             return value;
 }
+//# sourceMappingURL=nth.js.map

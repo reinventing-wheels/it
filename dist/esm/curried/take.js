@@ -5,3 +5,4 @@ import { take as takeʹ } from '../uncurried/take';
  * take(3)('foobar') // ('f', 'o', 'o')
  */
 export const take = (amount) => (it) => takeʹ(it, amount);
+//# sourceMappingURL=take.js.map

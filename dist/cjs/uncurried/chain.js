@@ -10,3 +10,4 @@ function* chain(...its) {
         yield* it;
 }
 exports.chain = chain;
+//# sourceMappingURL=chain.js.map

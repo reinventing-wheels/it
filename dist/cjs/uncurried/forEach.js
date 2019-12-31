@@ -11,3 +11,4 @@ function forEach(it, fn) {
         fn(value, i++);
 }
 exports.forEach = forEach;
+//# sourceMappingURL=forEach.js.map

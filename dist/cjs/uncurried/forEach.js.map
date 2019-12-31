@@ -1,0 +1,1 @@
+{"version":3,"file":"forEach.js","sourceRoot":"","sources":["../../../src/uncurried/forEach.ts"],"names":[],"mappings":";;AAEA;;;;GAIG;AACH,SAAgB,OAAO,CAAI,EAAe,EAAE,EAAqB;IAC/D,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC,CAAA;AAClB,CAAC;AAJD,0BAIC"}

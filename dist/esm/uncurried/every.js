@@ -10,3 +10,4 @@ export function every(it, fn) {
             return false;
     return true;
 }
+//# sourceMappingURL=every.js.map

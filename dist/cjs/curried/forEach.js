@@ -7,3 +7,4 @@ const forEach_1 = require("../uncurried/forEach");
  * forEach((c, i) => log(i, c))('foobar')
  */
 exports.forEach = (fn) => (it) => forEach_1.forEach(it, fn);
+//# sourceMappingURL=forEach.js.map

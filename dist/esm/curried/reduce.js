@@ -6,3 +6,4 @@ import { reduce as reduceʹ } from '../uncurried/reduce';
  * reduce((map, c, i) => map.set(i, c))(new Map)('foo') // Map
  */
 export const reduce = (fn) => (first) => (it) => reduceʹ(it, fn, first);
+//# sourceMappingURL=reduce.js.map

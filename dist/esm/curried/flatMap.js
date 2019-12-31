@@ -5,3 +5,4 @@ import { flatMap as flatMapʹ } from '../uncurried/flatMap';
  * flatMap(s => s)(['foo', 'bar']) // ('f', 'o', 'o', 'b', 'a', 'r')
  */
 export const flatMap = (fn) => (it) => flatMapʹ(it, fn);
+//# sourceMappingURL=flatMap.js.map

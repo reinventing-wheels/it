@@ -12,3 +12,4 @@ function* count(start = 0, step = 1) {
         yield n;
 }
 exports.count = count;
+//# sourceMappingURL=count.js.map

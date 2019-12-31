@@ -1,0 +1,1 @@
+{"version":3,"file":"takeWhile.js","sourceRoot":"","sources":["../../../src/uncurried/takeWhile.ts"],"names":[],"mappings":"AAEA;;;;GAIG;AACH,MAAM,SAAS,CAAC,CAAC,SAAS,CAAI,EAAe,EAAE,EAAwB;IACrE,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE,EAAE;QACtB,IAAI,CAAC,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC;YACjB,OAAM;QACR,MAAM,KAAK,CAAA;KACZ;AACH,CAAC"}

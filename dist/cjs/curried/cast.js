@@ -8,3 +8,4 @@ const cast_1 = require("../uncurried/cast");
  * cast(it => new Set(it))('foobar') // Set<string>
  */
 exports.cast = (fn) => (it) => cast_1.cast(it, fn);
+//# sourceMappingURL=cast.js.map

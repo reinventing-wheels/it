@@ -13,3 +13,4 @@ function* filter(it, fn) {
             yield value;
 }
 exports.filter = filter;
+//# sourceMappingURL=filter.js.map

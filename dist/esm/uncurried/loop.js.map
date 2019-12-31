@@ -1,0 +1,1 @@
+{"version":3,"file":"loop.js","sourceRoot":"","sources":["../../../src/uncurried/loop.ts"],"names":[],"mappings":"AAAA;;;;;;;GAOG;AACH,MAAM,SAAS,CAAC,CAAC,IAAI,CAAI,EAAkC,EAAE,KAAK,GAAG,QAAQ;IAC3E,KAAK,IAAI,CAAC,GAAG,CAAC,EAAE,CAAC,GAAG,KAAK,EAAE,CAAC,EAAE;QAC5B,KAAK,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAA;AAChB,CAAC"}

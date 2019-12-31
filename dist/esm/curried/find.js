@@ -6,3 +6,4 @@ import { find as findʹ } from '../uncurried/find';
  * find(c => c != 'f')('foobar') // 'o'
  */
 export const find = (fn) => (it) => findʹ(it, fn);
+//# sourceMappingURL=find.js.map

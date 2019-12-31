@@ -16,3 +16,4 @@ exports.staticMethods = (ctor) => {
             acc[prop] = ctor[prop];
     return acc;
 };
+//# sourceMappingURL=util.js.map

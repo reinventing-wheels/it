@@ -13,3 +13,4 @@ function some(it, fn) {
     return false;
 }
 exports.some = some;
+//# sourceMappingURL=some.js.map

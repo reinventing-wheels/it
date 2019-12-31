@@ -8,3 +8,4 @@ export function* enumerate(it) {
     for (const value of it)
         yield [i++, value];
 }
+//# sourceMappingURL=enumerate.js.map

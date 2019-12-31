@@ -9,3 +9,4 @@ function collect(it) {
     return [...it];
 }
 exports.collect = collect;
+//# sourceMappingURL=collect.js.map

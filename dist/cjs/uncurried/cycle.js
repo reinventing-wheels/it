@@ -11,3 +11,4 @@ function* cycle(it, times = Infinity) {
         yield* it;
 }
 exports.cycle = cycle;
+//# sourceMappingURL=cycle.js.map

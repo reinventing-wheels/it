@@ -5,3 +5,4 @@ import { every as everyʹ } from '../uncurried/every';
  * every(n => n > 1)([1, 2, 3]) // false
  */
 export const every = (fn) => (it) => everyʹ(it, fn);
+//# sourceMappingURL=every.js.map

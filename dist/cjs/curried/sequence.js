@@ -8,3 +8,4 @@ const sequence_1 = require("../uncurried/sequence");
  * sequence(5)(n => n**2)(2) // (2, 4, 16, 256, 65536)
  */
 exports.sequence = (length) => (fn) => (first) => sequence_1.sequence(fn, first, length);
+//# sourceMappingURL=sequence.js.map

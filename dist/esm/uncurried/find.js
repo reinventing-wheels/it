@@ -10,3 +10,4 @@ export function find(it, fn) {
         if (fn(value, i++))
             return value;
 }
+//# sourceMappingURL=find.js.map

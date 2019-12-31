@@ -8,3 +8,4 @@ const find_1 = require("../uncurried/find");
  * find(c => c != 'f')('foobar') // 'o'
  */
 exports.find = (fn) => (it) => find_1.find(it, fn);
+//# sourceMappingURL=find.js.map

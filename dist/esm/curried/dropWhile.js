@@ -5,3 +5,4 @@ import { dropWhile as dropWhileʹ } from '../uncurried/dropWhile';
  * dropWhile(c => c != 'b')('foobar') // ('b', 'a', 'r')
  */
 export const dropWhile = (fn) => (it) => dropWhileʹ(it, fn);
+//# sourceMappingURL=dropWhile.js.map

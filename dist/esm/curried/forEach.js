@@ -5,3 +5,4 @@ import { forEach as forEachʹ } from '../uncurried/forEach';
  * forEach((c, i) => log(i, c))('foobar')
  */
 export const forEach = (fn) => (it) => forEachʹ(it, fn);
+//# sourceMappingURL=forEach.js.map

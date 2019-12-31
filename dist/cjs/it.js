@@ -289,7 +289,8 @@ class IT {
         return exports.it(uc.zip(this, itʹ));
     }
 }
+exports.IT = IT;
 IT.uncurried = uc;
 IT.curried = c;
-exports.IT = IT;
 exports.it = Object.assign((it) => new IT(it), util_1.staticMethods(IT));
+//# sourceMappingURL=it.js.map

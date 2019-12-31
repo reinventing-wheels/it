@@ -8,3 +8,4 @@ export function* sequence(fn, first, length = Infinity) {
     for (let i = 0, value = first; i < length; value = fn(value, i++))
         yield value;
 }
+//# sourceMappingURL=sequence.js.map

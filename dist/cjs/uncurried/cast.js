@@ -10,3 +10,4 @@ function cast(it, fn) {
     return fn(it);
 }
 exports.cast = cast;
+//# sourceMappingURL=cast.js.map

@@ -7,3 +7,4 @@ const take_1 = require("../uncurried/take");
  * take(3)('foobar') // ('f', 'o', 'o')
  */
 exports.take = (amount) => (it) => take_1.take(it, amount);
+//# sourceMappingURL=take.js.map

@@ -11,3 +11,4 @@ export function* takeWhile(it, fn) {
         yield value;
     }
 }
+//# sourceMappingURL=takeWhile.js.map

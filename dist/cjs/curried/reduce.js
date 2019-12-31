@@ -8,3 +8,4 @@ const reduce_1 = require("../uncurried/reduce");
  * reduce((map, c, i) => map.set(i, c))(new Map)('foo') // Map
  */
 exports.reduce = (fn) => (first) => (it) => reduce_1.reduce(it, fn, first);
+//# sourceMappingURL=reduce.js.map

@@ -6,3 +6,4 @@ import { sequence as sequenceʹ } from '../uncurried/sequence';
  * sequence(5)(n => n**2)(2) // (2, 4, 16, 256, 65536)
  */
 export const sequence = (length) => (fn) => (first) => sequenceʹ(fn, first, length);
+//# sourceMappingURL=sequence.js.map

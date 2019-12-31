@@ -8,3 +8,4 @@ export function forEach(it, fn) {
     for (const value of it)
         fn(value, i++);
 }
+//# sourceMappingURL=forEach.js.map

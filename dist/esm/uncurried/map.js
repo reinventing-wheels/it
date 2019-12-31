@@ -8,3 +8,4 @@ export function* map(it, fn) {
     for (const value of it)
         yield fn(value, i++);
 }
+//# sourceMappingURL=map.js.map

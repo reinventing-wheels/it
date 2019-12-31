@@ -10,3 +10,4 @@ const loop_1 = require("../uncurried/loop");
  * loop(4)(countTo) // (1, 1, 2, 1, 2, 3, 1, 2, 3, 4)
  */
 exports.loop = (times) => (fn) => loop_1.loop(fn, times);
+//# sourceMappingURL=loop.js.map

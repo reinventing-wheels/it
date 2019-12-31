@@ -7,3 +7,4 @@
 export function cast(it, fn) {
     return fn(it);
 }
+//# sourceMappingURL=cast.js.map

@@ -8,3 +8,4 @@ export function* range(start = 0, stop = Infinity, step = 1) {
     for (let n = start; n < stop; n += step)
         yield n;
 }
+//# sourceMappingURL=range.js.map

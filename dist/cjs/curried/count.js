@@ -9,3 +9,4 @@ const count_1 = require("../uncurried/count");
  * count(-2)(0) // (0, -2, -4, -6, …)
  */
 exports.count = (start) => (step) => count_1.count(start, step);
+//# sourceMappingURL=count.js.map

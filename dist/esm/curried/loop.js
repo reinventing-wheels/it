@@ -8,3 +8,4 @@ import { loop as loopʹ } from '../uncurried/loop';
  * loop(4)(countTo) // (1, 1, 2, 1, 2, 3, 1, 2, 3, 4)
  */
 export const loop = (times) => (fn) => loopʹ(fn, times);
+//# sourceMappingURL=loop.js.map

@@ -13,3 +13,4 @@ function* inspect(it, fn) {
     }
 }
 exports.inspect = inspect;
+//# sourceMappingURL=inspect.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"nth.js","sourceRoot":"","sources":["../../../src/uncurried/nth.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AACH,MAAM,UAAU,GAAG,CAAI,EAAe,EAAE,CAAS;IAC/C,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,IAAI,CAAC,EAAE,IAAI,CAAC;YACV,OAAO,KAAK,CAAA;AAClB,CAAC"}

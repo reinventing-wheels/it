@@ -6,3 +6,4 @@ import { cast as castʹ } from '../uncurried/cast';
  * cast(it => new Set(it))('foobar') // Set<string>
  */
 export const cast = (fn) => (it) => castʹ(it, fn);
+//# sourceMappingURL=cast.js.map

@@ -7,3 +7,4 @@ const takeWhile_1 = require("../uncurried/takeWhile");
  * takeWhile(c => c != 'b')('foobar') // ('f', 'o', 'o')
  */
 exports.takeWhile = (fn) => (it) => takeWhile_1.takeWhile(it, fn);
+//# sourceMappingURL=takeWhile.js.map

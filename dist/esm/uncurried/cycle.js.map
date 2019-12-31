@@ -1,0 +1,1 @@
+{"version":3,"file":"cycle.js","sourceRoot":"","sources":["../../../src/uncurried/cycle.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AACH,MAAM,SAAS,CAAC,CAAC,KAAK,CAAI,EAAe,EAAE,KAAK,GAAG,QAAQ;IACzD,KAAK,IAAI,CAAC,GAAG,CAAC,EAAE,CAAC,GAAG,KAAK,EAAE,CAAC,EAAE;QAC5B,KAAK,CAAC,CAAC,EAAE,CAAA;AACb,CAAC"}

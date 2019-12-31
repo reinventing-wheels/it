@@ -11,3 +11,4 @@ function first(it) {
         return value;
 }
 exports.first = first;
+//# sourceMappingURL=first.js.map

@@ -10,3 +10,4 @@ export function* filter(it, fn) {
         if (fn(value, i++))
             yield value;
 }
+//# sourceMappingURL=filter.js.map

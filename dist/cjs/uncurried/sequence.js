@@ -11,3 +11,4 @@ function* sequence(fn, first, length = Infinity) {
         yield value;
 }
 exports.sequence = sequence;
+//# sourceMappingURL=sequence.js.map

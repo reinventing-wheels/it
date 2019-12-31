@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/reinventing-wheels/it/compare/v0.4.0...v0.5.0) (2019-12-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* change bundle filename
+
+### build
+
+* change bundle filename ([ed55743](https://github.com/reinventing-wheels/it/commit/ed557435969a26e7feb67a88a5562a9d5521651c))
+
 ## [0.4.0](https://github.com/reinventing-wheels/it/compare/v0.3.0...v0.4.0) (2019-06-08)
 
 

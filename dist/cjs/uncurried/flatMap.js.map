@@ -1,0 +1,1 @@
+{"version":3,"file":"flatMap.js","sourceRoot":"","sources":["../../../src/uncurried/flatMap.ts"],"names":[],"mappings":";;AAEA;;;;GAIG;AACH,QAAe,CAAC,CAAC,OAAO,CAAO,EAAe,EAAE,EAAoB;IAClE,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,KAAK,CAAC,CAAC,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC,CAAA;AACzB,CAAC;AAJD,0BAIC"}

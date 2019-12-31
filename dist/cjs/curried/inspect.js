@@ -7,3 +7,4 @@ const inspect_1 = require("../uncurried/inspect");
  * inspect((c, i) => log(i, c))('foobar') // ('f', 'o', …)
  */
 exports.inspect = (fn) => (it) => inspect_1.inspect(it, fn);
+//# sourceMappingURL=inspect.js.map

@@ -11,3 +11,4 @@ function* generate(fn, times = Infinity) {
         yield fn(i);
 }
 exports.generate = generate;
+//# sourceMappingURL=generate.js.map

@@ -10,3 +10,4 @@ export function reduce(it, fn, first) {
         acc = fn(acc, value, i++);
     return acc;
 }
+//# sourceMappingURL=reduce.js.map

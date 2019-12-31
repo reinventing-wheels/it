@@ -13,3 +13,4 @@ function* loop(fn, times = Infinity) {
         yield* fn(i);
 }
 exports.loop = loop;
+//# sourceMappingURL=loop.js.map

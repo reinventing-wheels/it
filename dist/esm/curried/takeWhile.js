@@ -5,3 +5,4 @@ import { takeWhile as takeWhileʹ } from '../uncurried/takeWhile';
  * takeWhile(c => c != 'b')('foobar') // ('f', 'o', 'o')
  */
 export const takeWhile = (fn) => (it) => takeWhileʹ(it, fn);
+//# sourceMappingURL=takeWhile.js.map

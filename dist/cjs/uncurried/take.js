@@ -15,3 +15,4 @@ function* take(it, amount = 1) {
     }
 }
 exports.take = take;
+//# sourceMappingURL=take.js.map

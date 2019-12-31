@@ -1,0 +1,1 @@
+{"version":3,"file":"filter.js","sourceRoot":"","sources":["../../../src/uncurried/filter.ts"],"names":[],"mappings":";;AAEA;;;;;GAKG;AACH,QAAe,CAAC,CAAC,MAAM,CAAI,EAAe,EAAE,EAAwB;IAClE,IAAI,CAAC,GAAG,CAAC,CAAA;IACT,KAAK,MAAM,KAAK,IAAI,EAAE;QACpB,IAAI,EAAE,CAAC,KAAK,EAAE,CAAC,EAAE,CAAC;YAChB,MAAM,KAAK,CAAA;AACjB,CAAC;AALD,wBAKC"}

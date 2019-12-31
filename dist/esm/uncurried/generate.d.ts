@@ -4,5 +4,5 @@
  * generate(i => i, 5) // (0, 1, 2, 3, 4)
  * generate(i => i) // (0, 1, 2, 3, 4, …)
  */
-export declare function generate<T>(fn: (index: number) => T, times?: number): IterableIterator<T>;
+export declare function generate<T>(fn: (index: number) => T, times?: number): Generator<T, void, unknown>;
 //# sourceMappingURL=generate.d.ts.map

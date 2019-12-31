@@ -1,4 +1,4 @@
-import { Callback, Reducer, Flatten } from './types';
+import { Callback, Flatten, Reducer } from './types';
 import * as uc from './uncurried';
 import * as c from './curried';
 export declare class IT<T> implements Iterable<T> {

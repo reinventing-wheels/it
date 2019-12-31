@@ -1,0 +1,1 @@
+{"version":3,"file":"generate.js","sourceRoot":"","sources":["../../../src/uncurried/generate.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AACH,MAAM,SAAS,CAAC,CAAC,QAAQ,CAAI,EAAwB,EAAE,KAAK,GAAG,QAAQ;IACrE,KAAK,IAAI,CAAC,GAAG,CAAC,EAAE,CAAC,GAAG,KAAK,EAAE,CAAC,EAAE;QAC5B,MAAM,EAAE,CAAC,CAAC,CAAC,CAAA;AACf,CAAC"}

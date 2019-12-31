@@ -8,3 +8,4 @@ const range_1 = require("../uncurried/range");
  * range(1)(10)(2) // (1, 3, 5, 7, 9)
  */
 exports.range = (start) => (stop) => (step) => range_1.range(start, stop, step);
+//# sourceMappingURL=range.js.map

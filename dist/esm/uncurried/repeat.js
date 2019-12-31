@@ -8,3 +8,4 @@ export function* repeat(value, times = Infinity) {
     for (let i = 0; i < times; i++)
         yield value;
 }
+//# sourceMappingURL=repeat.js.map

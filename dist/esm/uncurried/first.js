@@ -8,3 +8,4 @@ export function first(it) {
     for (const value of lock(it))
         return value;
 }
+//# sourceMappingURL=first.js.map

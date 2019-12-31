@@ -8,3 +8,4 @@ const nth_1 = require("../uncurried/nth");
  * nth(3)('foobar') // 'b'
  */
 exports.nth = (n) => (it) => nth_1.nth(it, n);
+//# sourceMappingURL=nth.js.map

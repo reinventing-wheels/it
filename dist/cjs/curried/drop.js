@@ -7,3 +7,4 @@ const drop_1 = require("../uncurried/drop");
  * drop(3)('foobar') // ('b', 'a', 'r')
  */
 exports.drop = (amount) => (it) => drop_1.drop(it, amount);
+//# sourceMappingURL=drop.js.map

@@ -6,3 +6,4 @@ import { range as rangeʹ } from '../uncurried/range';
  * range(1)(10)(2) // (1, 3, 5, 7, 9)
  */
 export const range = (start) => (stop) => (step) => rangeʹ(start, stop, step);
+//# sourceMappingURL=range.js.map

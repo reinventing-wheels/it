@@ -10,3 +10,4 @@ function* flatten(it) {
         yield* value;
 }
 exports.flatten = flatten;
+//# sourceMappingURL=flatten.js.map

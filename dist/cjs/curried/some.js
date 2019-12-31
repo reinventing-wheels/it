@@ -7,3 +7,4 @@ const some_1 = require("../uncurried/some");
  * some(n => n < 1)([1, 2, 3]) // false
  */
 exports.some = (fn) => (it) => some_1.some(it, fn);
+//# sourceMappingURL=some.js.map

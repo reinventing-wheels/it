@@ -1,0 +1,1 @@
+{"version":3,"file":"range.js","sourceRoot":"","sources":["../../../src/uncurried/range.ts"],"names":[],"mappings":";;AAAA;;;;;GAKG;AACH,QAAe,CAAC,CAAC,KAAK,CAAC,KAAK,GAAG,CAAC,EAAE,IAAI,GAAG,QAAQ,EAAE,IAAI,GAAG,CAAC;IACzD,KAAK,IAAI,CAAC,GAAG,KAAK,EAAE,CAAC,GAAG,IAAI,EAAE,CAAC,IAAI,IAAI;QACrC,MAAM,CAAC,CAAA;AACX,CAAC;AAHD,sBAGC"}

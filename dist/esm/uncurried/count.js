@@ -9,3 +9,4 @@ export function* count(start = 0, step = 1) {
     for (let n = start;; n += step)
         yield n;
 }
+//# sourceMappingURL=count.js.map
