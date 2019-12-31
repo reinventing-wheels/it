@@ -1,0 +1,6 @@
+extends: defaults
+ignorePatterns:
+  - '*.spec.*'
+  - '*.test.*'
+rules:
+  curly: off

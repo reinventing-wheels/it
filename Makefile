@@ -3,7 +3,7 @@ PATH := node_modules/.bin:$(PATH)
 all: lint test clean build
 
 lint: node_modules
-	tslint -p .
+	eslint --ext .ts src
 
 test: node_modules
 	jest
