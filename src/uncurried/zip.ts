@@ -7,7 +7,7 @@ import { unwrap } from '../util'
  * zip([1, 2, 3], 'foobar') // ([1, 'f'], [2, 'o'], [3, 'o'])
  */
 export function* zip<T extends any[]>(...its: Iterables<T>) {
-  for (const itsʹ = its.map(unwrap);;) {
+  for (const itsʹ = its.map(unwrap); ;) {
     const values = []
     for (const it of itsʹ) {
       const { done, value } = it.next()

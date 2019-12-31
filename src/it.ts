@@ -1,4 +1,4 @@
-import { Callback, Reducer, Flatten } from './types'
+import { Callback, Flatten, Reducer } from './types'
 import { staticMethods } from './util'
 import * as uc from './uncurried'
 import * as c from './curried'

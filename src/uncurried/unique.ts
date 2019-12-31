@@ -1,5 +1,3 @@
-import { Callback } from '../types'
-
 /**
  * @example
  * unique([1, 3, 3, 7]) // (1, 3, 7)

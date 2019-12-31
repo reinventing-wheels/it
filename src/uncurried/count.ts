@@ -6,6 +6,6 @@
  * count(0, -2) // (0, -2, -4, -6, …)
  */
 export function* count(start = 0, step = 1) {
-  for (let n = start;; n += step)
+  for (let n = start; ; n += step)
     yield n
 }
