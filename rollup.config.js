@@ -2,36 +2,44 @@ import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
 import resolve from 'rollup-plugin-node-resolve'
 import sourcemaps from 'rollup-plugin-sourcemaps'
-import merge from 'deepmerge'
 import pkg from './package.json'
 
+const DEV = process.env.ROLLUP_WATCH
 const ESM = pkg.browser.replace(/\bumd\b/, 'esm')
 const UMD = pkg.browser
 
-//
-
-const base = {
-  input: pkg.module,
-  output: {
-    freeze: false,
-    interop: false,
-    preferConst: true,
-    sourcemap: true
-  },
-  plugins: [
-    resolve(),
-    sourcemaps()
-  ]
+const baseOutput = {
+  freeze: false,
+  interop: false,
+  sourcemap: true,
+  preferConst: true
 }
 
+const basePlugins = [
+  resolve(),
+  sourcemaps()
+]
+
 const dev = {
+  input: pkg.module,
+  output: [
+    { ...baseOutput, format: 'esm', file: ESM },
+    { ...baseOutput, format: 'umd', file: UMD, name: pkg.name }
+  ],
   plugins: [
+    ...basePlugins,
     cleanup()
   ]
 }
 
 const min = {
+  input: pkg.module,
+  output: dev.output.map(({ file, ...rest }) => ({
+    ...rest,
+    file: file.replace(/(?=js$)/, 'min.')
+  })),
   plugins: [
+    ...basePlugins,
     terser({
       ecma: 8,
       compress: {
@@ -52,41 +60,4 @@ const min = {
   ]
 }
 
-//
-
-const esm = merge(base, {
-  output: {
-    format: 'esm',
-    file: ESM
-  }
-})
-
-const umd = merge(base, {
-  output: {
-    format: 'umd',
-    file: UMD,
-    name: pkg.name
-  }
-})
-
-//
-
-const esmDev = merge(esm, dev)
-const esmMin = merge(merge(esm, min), {
-  output: {
-    file: ESM.replace(/(?=js$)/, 'min.')
-  }
-})
-
-const umdDev = merge(umd, dev)
-const umdMin = merge(merge(umd, min), {
-  output: {
-    file: UMD.replace(/(?=js$)/, 'min.')
-  }
-})
-
-//
-
-export default !process.env.ROLLUP_WATCH
-  ? [ esmDev, umdDev, esmMin, umdMin ]
-  : [ esmDev, umdDev ]
+export default DEV ? dev : [dev, min]
