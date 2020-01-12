@@ -309,6 +309,16 @@ export class IT<T> implements Iterable<T> {
 
   /**
    * @example
+   * it('foobar').then(chars => new Set(chars)) // (f o b a r)
+   * it('foobar').then(chars => [...chars].sort()) // (a b f o o r)
+   * it('foobar').then(chars => [...chars].reverse()) // (r a b o o f)
+   */
+  then<U>(fn: (it: this) => Iterable<U>) {
+    return it(fn(this))
+  }
+
+  /**
+   * @example
    * it([1, 3, 3, 7]).unique() // (1 3 7)
    * it('foobar').unique() // (f o b a r)
    */
