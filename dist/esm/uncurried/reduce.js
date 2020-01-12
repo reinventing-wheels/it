@@ -1,7 +1,7 @@
 /**
  * @example
  * reduce([1, 2, 3], (acc, n) => acc + n, 0) // 6
- * reduce([1, 2, 3], (acc, n) => acc + n, '') // '123'
+ * reduce([1, 2, 3], (acc, n) => acc + n, '') // 123
  * reduce('foo', (map, c, i) => map.set(i, c), new Map) // Map
  */
 export function reduce(it, fn, first) {

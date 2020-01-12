@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @example
- * chunk([1, 2, 3, 4, 5], 2) // ([1, 2], [3, 4], [5])
- * chunk('foobar', 3) // (['f', 'o', 'o'], ['b', 'a', 'r'])
+ * chunk([1, 2, 3, 4, 5], 2) // ([1 2] [3 4] [5])
+ * chunk('foobar', 3) // ([f o o] [b a r])
  */
 function* chunk(it, size) {
     const chunk = [];

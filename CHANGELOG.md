@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/reinventing-wheels/it/compare/v0.5.0...v0.5.1) (2020-01-12)
+
+
+### Features
+
+* export all functions in `fns.ts` ([4cd4ac1](https://github.com/reinventing-wheels/it/commit/4cd4ac1ee62bf307c4557da338388aba531f9342))
+* then ([3d38a9d](https://github.com/reinventing-wheels/it/commit/3d38a9d6e12bd9459f2be4cd2a4379818d7dc0cf))
+
 ## [0.5.0](https://github.com/reinventing-wheels/it/compare/v0.4.0...v0.5.0) (2019-12-31)
 
 

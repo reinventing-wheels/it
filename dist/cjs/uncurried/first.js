@@ -4,7 +4,7 @@ const util_1 = require("../util");
 /**
  * @example
  * first([1, 2, 3]) // 1
- * first('foobar') // 'f'
+ * first('foobar') // f
  */
 function first(it) {
     for (const value of util_1.lock(it))

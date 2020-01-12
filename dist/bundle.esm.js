@@ -461,6 +461,9 @@ class IT {
     takeWhile(fn) {
         return it(takeWhile(this, fn));
     }
+    then(fn) {
+        return it(fn(this));
+    }
     unique() {
         return it(unique(this));
     }
