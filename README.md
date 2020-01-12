@@ -2,7 +2,7 @@
 
 ## Installation
 
-**Tip:** see [Git URLs as Dependencies][7] for more info
+> **Tip:** see [Git URLs as Dependencies][7] for more info
 
 ```sh
 npm install reinventing-wheels/it
@@ -10,7 +10,7 @@ npm install reinventing-wheels/it
 
 ## Usage
 
-**Tip:** use [VSCode][2] or any other editor with [TypeScript][3] declarations support for the best experience
+> **Tip:** use [VSCode][2] or any other editor with [TypeScript][3] declarations support for the best experience
 
 ### Single-purpose functions
 
