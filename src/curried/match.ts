@@ -2,9 +2,7 @@ import { match as matchʹ } from '../uncurried/match'
 
 /**
  * @example
- * // (['foo', 'f', 'oo', index: 0, input: 'foobarbaz'],
- * //  ['bar', 'b', 'ar', index: 3, input: 'foobarbaz'],
- * //  ['baz', 'b', 'az', index: 6, input: 'foobarbaz'])
+ * // ([foo f oo] [bar b ar] [baz b az])
  * match(/(f|b)(..)/g)('foobarbaz')
  */
 export const match = (regexp: RegExp) => (input: string) =>

@@ -1,7 +1,7 @@
 /**
  * @example
- * unique([1, 3, 3, 7]) // (1, 3, 7)
- * unique('foobar') // ('f', 'o', 'b', 'a', 'r')
+ * unique([1, 3, 3, 7]) // (1 3 7)
+ * unique('foobar') // (f o b a r)
  */
 export function* unique<T>(it: Iterable<T>) {
   const set = new Set<T>()
