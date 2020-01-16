@@ -5,8 +5,8 @@ import sourcemaps from 'rollup-plugin-sourcemaps'
 import pkg from './package.json'
 
 const DEV = process.env.ROLLUP_WATCH
-const ESM = pkg.browser.replace(/\bumd\b/, 'esm')
-const UMD = pkg.browser
+const ESM = pkg.module
+const UMD = pkg.main
 
 const baseOutput = {
   freeze: false,
@@ -21,7 +21,7 @@ const basePlugins = [
 ]
 
 const dev = {
-  input: pkg.module,
+  input: 'dist/esm',
   output: [
     { ...baseOutput, format: 'esm', file: ESM },
     { ...baseOutput, format: 'umd', file: UMD, name: pkg.name }

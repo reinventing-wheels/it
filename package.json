@@ -2,8 +2,8 @@
   "name": "it",
   "version": "0.5.1",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/bundle.umd.js",
+  "module": "dist/bundle.esm.js",
   "browser": "dist/bundle.umd.js",
   "dependencies": {},
   "devDependencies": {
