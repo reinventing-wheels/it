@@ -1,6 +1,15 @@
-extends: defaults
+extends:
+  - 'defaults/ts'
+env:
+  node: true
 ignorePatterns:
   - '*.spec.*'
   - '*.test.*'
+parserOptions:
+  sourceType: 'module'
 rules:
   curly: off
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
